@@ -101,3 +101,6 @@ grand_mas(X):-grand_ma(Y,X),write(Y),nl,fail.
 grand_pa_and_son(X,Y):-grand_pa(X,Y);grand_pa(Y,X).
 
 grand_pa_and_da(X,Y):-(grand_pa(X,Y),woman(Y));(grand_pa(Y,X),woman(X)).
+
+uncle(X,Y):-grand_pa(Z,Y),parent(Z,X),\+parent(X,Y),man(X).
+uncles(X):-uncle(Y,X),write(Y),nl,fail.
