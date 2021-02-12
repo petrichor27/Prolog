@@ -68,3 +68,6 @@ son(X):-parent(X,Y),man(Y),write(Y).
 
 brother(X,Y):-mother(Z,X),mother(Z,Y),man(X),X\=Y.
 brother(X):-brother(Y,X),write(Y),nl,fail.
+
+sister(X,Y):-mother(Z,X),mother(Z,Y),woman(X),X\=Y.
+sisters(X):-sister(Y,X),write(Y),nl,fail.
