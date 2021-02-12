@@ -10,6 +10,10 @@ man(edvard).
 man(loke).
 man(sagr).
 
+man(todd).
+man(ray).
+man(bob).
+
 woman(vicky).
 woman(lilu).
 woman(lora).
@@ -20,6 +24,10 @@ woman(sandra).
 woman(agatha).
 woman(eva).
 woman(liod).
+
+woman(sarah).
+woman(sofia).
+woman(cora).
 
 man():-man(X),write(X),nl,fail.
 woman():-woman(X),write(X),nl,fail.
@@ -58,6 +66,15 @@ parent(lora,osty).
 parent(lora,loke).
 parent(lora,liod).
 
+parent(ray,sagr).
+parent(sofia,sagr).
+
+parent(sarah,laya).
+parent(todd,laya).
+
+parent(bob,bont).
+parent(cora,bont).
+
 children(X):-parent(X,Y),write(Y),nl,fail.
 
 mother(X,Y):-parent(X,Y),woman(X).
@@ -74,3 +91,6 @@ sisters(X):-sister(Y,X),write(Y),nl,fail.
 
 b_s(X,Y):-mother(Z,X),mother(Z,Y),X\=Y.
 b_s(X):-b_s(Y,X),write(Y),nl,fail.
+
+grand_pa(X,Y):-parent(X,Z),parent(Z,Y),man(X).
+grand_pas(X):-grand_pa(Y,X),write(Y),nl,fail.
