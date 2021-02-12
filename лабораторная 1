@@ -65,3 +65,6 @@ mother(X):-mother(Y,X),write(Y).
 
 son(X,Y):-parent(Y,X),man(X).
 son(X):-parent(X,Y),man(Y),write(Y).
+
+brother(X,Y):-mother(Z,X),mother(Z,Y),man(X),X\=Y.
+brother(X):-brother(Y,X),write(Y),nl,fail.
