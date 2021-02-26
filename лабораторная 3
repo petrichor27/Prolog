@@ -56,3 +56,9 @@ prost(N,M):-nod(N,M,X),X\=1,!.
 kol_del(N,X):-N1 is N div 2,kol_del(N,N1,X1),X is X1+1,!.
 kol_del(_,0,0):-!.
 kol_del(N,M,X):-M1 is M-1,C is N mod M,kol_del(N,M1,X1),(C=0,X is X1+1;C\=0,X is X1),!.
+%13
+posl(N):-posl(1,1,0,N),!.
+posl(N,Nt,_,Nt):-N>=1000000,!.
+posl(N,Nt,MaxDl,MaxN):-N1 is N+1,posl(N1,0,Dl1),(Dl1>MaxDl -> MaxDl1 is Dl1,Nt1 is N1;MaxDl1 is MaxDl,Nt1 is Nt),posl(N1,Nt1,MaxDl1,MaxN),!.
+posl(1,M,Dl):-Dl is M+1,!.
+posl(N,M,Dl):-M1 is M+1,N1 is N mod 2,(N1=0 -> N2 is N div 2;N2 is 3*N+1),posl(N2,M1,Dl),!.
