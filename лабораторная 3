@@ -16,3 +16,7 @@ fact1(I,F,N,X):-I1 is I+1,F1 is F*I1,fact1(I1,F1,N,X).
 fib(1,1):-!.
 fib(2,1):-!.
 fib(N,X):-N1 is N-1,fib(N1,X1),N2 is N-2,fib(N2,X2),X is X1+X2,!.
+%6
+fib1(N,X):-fib1(N,X,1,0),!.
+fib1(0,X,_,X):-!.
+fib1(N,X,Z,A):-N1 is N-1,A1 is A+Z,fib1(N1,X,A,A1),!.
