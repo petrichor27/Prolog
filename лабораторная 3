@@ -70,3 +70,11 @@ kol_prost(N,M,X):-M1 is M-1,kol_prost(N,M1,X1),nod(N,M1,C),(C=1,X is X1+1;C\=1,X
 kol_pr(N,X):-kol_pr(N,N,0,X),!.
 kol_pr(_,1,X,X):-!.
 kol_pr(N,M,Z,X):-M1 is M-1,nod(N,M1,C),(C=1,X1 is Z+1;C\=1,X1 is Z),kol_pr(N,M1,X1,X),!.
+%15
+del(N,M,M):-0 is N mod M,!.
+del(N,M,X):-M1 is M+1,M1=<N,del(N,M1,X),!.
+
+del(N,X):-del(N,2,M1),M1<N,del(N,N,M1,0,0,0,X),!.
+del(N,0,M,_,MaxK,D,X):-M1 is M+1,del(N,M1,M2),del(N,N,M2,0,MaxK,D,X),!.
+del(N,Nt,M,K,MaxK,D,X):-Nt>0,N1 is Nt div 10,N2 is Nt mod 10,nod(M,N2,A),(A=1->K1 is K+1;K1 is K),(MaxK<K1->Max1 is K1,D1 is M;Max1 is MaxK,D1 is D),del(N,N1,M,K1,Max1,D1,X),!.
+del(N,_,M,_,_,D,D):-M1 is N div 2,M1=<M.
