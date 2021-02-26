@@ -44,3 +44,6 @@ sub(S,L):-S=L,!.
 sub([H|T1],[H|T]):-sub(T1,T),!.
 sub([H1|T1],[_|T]):-sub([H1|T1],T),!.
 sub([],_):-!.
+%12
+del_num([_|T],0,T):-!.
+del_num([H|T],N,[H|T1]):-N1 is N-1,del_num(T,N1,T1),!.
