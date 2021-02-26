@@ -26,3 +26,7 @@ pr4_5:-write("Nope."),!.
 %6
 min_list_up([H],H):-!.
 min_list_up([H|T],Min):-min_list_up(T,M1),(H>M1,Min is M1;Min is H),!.
+%7
+min_list_down([H|T],M):-min_list_down([H|T],H,M).
+min_list_down([],M,M):-!.
+min_list_down([H|T],M,Min):-(M>H,M1 is H;M1 is M),min_list_down(T,M1,Min),!.
