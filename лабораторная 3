@@ -12,3 +12,7 @@ fact(N,X):-C is N-1,fact(C,X1),X is N*X1.
 fact1(N,X):-fact1(0,1,N,X).
 fact1(N,X,N,X):-!.
 fact1(I,F,N,X):-I1 is I+1,F1 is F*I1,fact1(I1,F1,N,X).
+%5
+fib(1,1):-!.
+fib(2,1):-!.
+fib(N,X):-N1 is N-1,fib(N1,X1),N2 is N-2,fib(N2,X2),X is X1+X2,!.
