@@ -46,3 +46,10 @@ nod(N,N,N):-!.
 nod(N,M,X):-N>M, N1 is N-M,nod(N1,M,X),!.
 nod(N,M,X):-N<M, M1 is M-N,nod(N,M1,X),!.
 
+prost(1):-!.
+prost(2):-!.
+prost(N):-N>0,M is N-1,not(prost(N,M)),!.
+prost(_,1):-!.
+prost(N,M):-M>2,M1 is M-1,prost(N,M1),!.
+prost(N,M):-nod(N,M,X),X\=1,!.
+
