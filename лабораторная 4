@@ -35,3 +35,7 @@ pr4_8:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),min_list_do
 %9
 in_list([El|_],El):-!.
 in_list([_|Tail],El):-in_list(Tail,El).
+%10
+turn(L1,L2):-turn(L1,[],L2),!.
+turn([],A,A):-!.
+turn([H|T],A,B):-turn(T,[H|A],B),!.
