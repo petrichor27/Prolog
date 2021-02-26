@@ -67,3 +67,6 @@ kol_prost(N,X):-kol_prost(N,N,X),!.
 kol_prost(_,1,0):-!.
 kol_prost(N,M,X):-M1 is M-1,kol_prost(N,M1,X1),nod(N,M1,C),(C=1,X is X1+1;C\=1,X is X1),!.
 
+kol_pr(N,X):-kol_pr(N,N,0,X),!.
+kol_pr(_,1,X,X):-!.
+kol_pr(N,M,Z,X):-M1 is M-1,nod(N,M1,C),(C=1,X1 is Z+1;C\=1,X1 is Z),kol_pr(N,M1,X1,X),!.
