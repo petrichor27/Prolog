@@ -41,3 +41,8 @@ sum3(N,X):-N1 is N div 10,sum3(N1,X1),N2 is N mod 10,(N2 mod 3 > 0 -> X is X1;X 
 sum31(N,X):-sum31(N,0,X),!.
 sum31(0,X,X):-!.
 sum31(N,X1,X):-N1 is N mod 10,N2 is N div 10,(N1 mod 3 > 0 -> X2 is X1;X2 is N1+X1),sum31(N2,X2,X),!.
+%12
+nod(N,N,N):-!.
+nod(N,M,X):-N>M, N1 is N-M,nod(N1,M,X),!.
+nod(N,M,X):-N<M, M1 is M-N,nod(N,M1,X),!.
+
