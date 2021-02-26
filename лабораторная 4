@@ -23,3 +23,6 @@ pr4_4:-write("Nope."),!.
 %5
 pr4_5:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("Number = "),read(Num),list_el_numb(List,Elem,Num),write("Elem = "),write(Elem),!.
 pr4_5:-write("Nope."),!.
+%6
+min_list_up([H],H):-!.
+min_list_up([H|T],Min):-min_list_up(T,M1),(H>M1,Min is M1;Min is H),!.
