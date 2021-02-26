@@ -27,3 +27,6 @@ sum(N,X):-N1 is N div 10,sum(N1,X1),X is N mod 10+X1.
 sum1(N,X):-sum1(N,0,X),!.
 sum1(0,X,X):-!.
 sum1(A,X1,X):-A1 is A mod 10,A2 is A div 10,X2 is X1+A1,sum1(A2,X2,X),!.
+%9
+max(0,0):-!.
+max(N,X):-N1 is N div 10,N2 is N mod 10,max(N1,X1),(N2<X1 -> X=X1;X=N2),!.
