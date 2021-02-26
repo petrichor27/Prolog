@@ -47,3 +47,7 @@ sub([],_):-!.
 %12
 del_num([_|T],0,T):-!.
 del_num([H|T],N,[H|T1]):-N1 is N-1,del_num(T,N1,T1),!.
+%13
+del_all([],_,[]):-!.
+del_all([El|T],El,L):-del_all(T,El,L),!.
+del_all([H|T],El,[H|L]):-del_all(T,El,L),!.
