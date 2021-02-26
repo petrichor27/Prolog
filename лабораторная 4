@@ -32,3 +32,6 @@ min_list_down([],M,M):-!.
 min_list_down([H|T],M,Min):-(M>H,M1 is H;M1 is M),min_list_down(T,M1,Min),!.
 %8
 pr4_8:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),min_list_down(List,Min),write("Min = "),write(Min),!.
+%9
+in_list([El|_],El):-!.
+in_list([_|Tail],El):-in_list(Tail,El).
