@@ -78,3 +78,18 @@ del(N,X):-del(N,2,M1),M1<N,del(N,N,M1,0,0,0,X),!.
 del(N,0,M,_,MaxK,D,X):-M1 is M+1,del(N,M1,M2),del(N,N,M2,0,MaxK,D,X),!.
 del(N,Nt,M,K,MaxK,D,X):-Nt>0,N1 is Nt div 10,N2 is Nt mod 10,nod(M,N2,A),(A=1->K1 is K+1;K1 is K),(MaxK<K1->Max1 is K1,D1 is M;Max1 is MaxK,D1 is D),del(N,N1,M,K1,Max1,D1,X),!.
 del(N,_,M,_,_,D,D):-M1 is N div 2,M1=<M.
+%16
+%сумма делителей
+sum_del(N,X):-sum_del(N,1,0,X),!.
+sum_del(N,M,X,X):-N2 is N div 2,M>N2,!.
+sum_del(N,M,X,S):-0 is N mod M,X1 is X+M,M1 is M+1,N2 is N div 2,M=<N2,sum_del(N,M1,X1,S),!.
+sum_del(N,M,X,S):-M1 is M+1,N2 is N div 2,M1=<N2,sum_del(N,M1,X,S),!.
+
+%разбиение на слагаемые
+slag(N):-I1 is N-10,I2 is 10,slag1(I1,I2).
+slag1(I1,I2):-sum_del(I1,S1),S1>I1,sum_del(I2,S2),S2>I2,!.
+slag1(I1,I2):-I11 is I1-1,I22 is I2+1,I11>=I22,slag1(I11,I22),!.
+
+pr3_16(Kol):-pr3_16(3,0,Kol),!.
+pr3_16(20000,K,K):-!.
+pr3_16(N,K,Kol):-(slag(N)->K1 is K,write(N),nl;K1 is K+1),N1 is N+1,pr3_16(N1,K1,Kol),!.
