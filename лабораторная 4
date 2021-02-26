@@ -51,3 +51,8 @@ del_num([H|T],N,[H|T1]):-N1 is N-1,del_num(T,N1,T1),!.
 del_all([],_,[]):-!.
 del_all([El|T],El,L):-del_all(T,El,L),!.
 del_all([H|T],El,[H|L]):-del_all(T,El,L),!.
+%14
+povt([H|T]):-not(povt(T,H)).
+povt([H|_],H):-!.
+povt([H|T],El):-H\=El,povt(T,El),!.
+povt([H|T],_):-povt(T,H),!.
