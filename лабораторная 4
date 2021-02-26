@@ -13,3 +13,7 @@ pr4_2:-write("kolvo"),nl,read(N),read_list(N,List),sum_list_down(List,Sum),write
 %3
 sum_list_up([],0):-!.
 sum_list_up([H|T],S):-sum_list_up(T,S1),S is H+S1.
+%4
+list_el_numb(L,E,N):-list_el_numb(L,E,0,N).
+list_el_numb([H|_],H,N,N):-!.
+list_el_numb([_|T],E,I,N):-I1 is I+1,list_el_numb(T,E,I1,N).
