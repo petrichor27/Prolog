@@ -34,3 +34,6 @@ max(N,X):-N1 is N div 10,N2 is N mod 10,max(N1,X1),(N2<X1 -> X=X1;X=N2),!.
 max1(N,X):-max1(N,0,X),!.
 max1(0,X,X):-!.
 max1(N,Z,X):-N1 is N div 10,N2 is N mod 10,(N2>Z -> X1 is N2;X1 is Z),max1(N1,X1,X),!.
+%11
+sum3(0,0):-!.
+sum3(N,X):-N1 is N div 10,sum3(N1,X1),N2 is N mod 10,(N2 mod 3 > 0 -> X is X1;X is N2+X1),!.
