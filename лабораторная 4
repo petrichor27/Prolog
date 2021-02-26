@@ -39,3 +39,8 @@ in_list([_|Tail],El):-in_list(Tail,El).
 turn(L1,L2):-turn(L1,[],L2),!.
 turn([],A,A):-!.
 turn([H|T],A,B):-turn(T,[H|A],B),!.
+%11
+sub(S,L):-S=L,!.
+sub([H|T1],[H|T]):-sub(T1,T),!.
+sub([H1|T1],[_|T]):-sub([H1|T1],T),!.
+sub([],_):-!.
