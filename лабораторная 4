@@ -20,3 +20,6 @@ list_el_numb([_|T],E,I,N):-I1 is I+1,list_el_numb(T,E,I1,N).
 
 pr4_4:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("Elem = "),read(Elem),list_el_numb(List,Elem,Num),write("Number = "),write(Num),write("."),!.
 pr4_4:-write("Nope."),!.
+%5
+pr4_5:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("Number = "),read(Num),list_el_numb(List,Elem,Num),write("Elem = "),write(Elem),!.
+pr4_5:-write("Nope."),!.
