@@ -4,3 +4,7 @@ read_list(N,[Head|Tail]):-read(Head),N1 is N-1,read_list(N1,Tail).
 
 write_list([]):-!.
 write_list([Head|Tail]):-write(Head),nl,write_list(Tail).
+%2
+sum_list_down(L,S):-sum_list_down(L,0,S),!.
+sum_list_down([],S,S):-!.
+sum_list_down([H|T],S,Sum):-S1 is S+H,sum_list_down(T,S1,Sum).
