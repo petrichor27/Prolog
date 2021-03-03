@@ -78,3 +78,9 @@ kolvo_after_max([H|T],KolMax,Max,Kol,K):-H\=Max,(KolMax\=0->kolvo_after_max(T,Ko
 kolvo_after_max([],_,_,K,K):-!.
 
 pr18_1:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),kolvo_after_max(List,Kolvo),write("Kolvo = "),write(Kolvo),nl,!.
+%18.2
+index([H|T],I):-index(T,H,0,1,I),!.
+index([],_,I,_,I):-!.
+index([H|T],Min,Index,TempI,I):-(H<Min->Min1 is H,Index1 is TempI;Min1 is Min,Index1 is Index),TempI1 is TempI+1,index(T,Min1,Index1,TempI1,I),!.
+
+pr18_2:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),index(List,I),write("Index = "),write(I),nl,!.
