@@ -90,3 +90,16 @@ kolvo_v_int([H|T],A,B,Kol,K):-(H>A,H<B->Kol1 is Kol+1;Kol1 is Kol),kolvo_v_int(T
 kolvo_v_int([],_,_,K,K):-!.
 
 pr18_14:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("a = "),read(A),nl,write("b = "),read(B),kolvo_v_int(List,A,B,Kol),write("Kolvo = "),write(Kol),nl,!.
+%18.16
+max_els([H|T],M1,M2):-max_els(H,T,M1,M2),!.
+max_els(H,[H1|T],M1,M2):-(H\=H1->(H>H1->max_els(T,H,H1,M1,M2);max_els(T,H1,H,M1,M2));max_els(H,T,M1,M2)),!.
+max_els([H|T],Max1,Max2,M1,M2):-(H>Max1->Max11 is H,Max22 is Max1;(H>Max2->Max11 is Max1,Max22 is H);Max11 is Max1,Max22 is Max2),max_els(T,Max11,Max22,M1,M2),!.
+max_els([],Max1,Max2,Max1,Max2):-!.
+
+pr18_16([M1|T],M1,M2):-not(pr18_16(T,M2)),!.
+pr18_16([M2|T],M1,M2):-pr18_16(T,M1),!.
+pr18_16([_|T],M1,M2):-pr18_16(T,M1,M2),!.
+pr18_16([H|T],M):-(H\=M->write(H),write(" "),pr18_16(T,M)),!.
+pr18_16(List):-max_els(List,Max1,Max2),write("Elements:"),nl,pr18_16(List,Max1,Max2),!.
+
+pr18_16:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),pr18_16(List),!.
