@@ -64,3 +64,7 @@ kolvo_povt(L,El,K):-kolvo_povt(L,El,0,K),!.
 kolvo_povt([El|T],El,K,Kol):-K1 is K+1,kolvo_povt(T,El,K1,Kol),!.
 kolvo_povt([_|T],El,K,Kol):-kolvo_povt(T,El,K,Kol),!.
 kolvo_povt([],_,K,K):-!.
+%17
+lenght(L,Len):-lenght(L,0,Len),!.
+lenght([_|T],L,Len):-L1 is L+1,lenght(T,L1,Len),!.
+lenght([],L,L):-!.
