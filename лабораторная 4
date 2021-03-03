@@ -56,3 +56,6 @@ povt([H|T]):-not(povt(T,H)).
 povt([H|_],H):-!.
 povt([H|T],El):-H\=El,povt(T,El),!.
 povt([H|T],_):-povt(T,H),!.
+%15
+unique([],[]):-!.
+unique([H|T],[H|T1]):-del_all([H|T],H,L1),unique(L1,T1),!.
