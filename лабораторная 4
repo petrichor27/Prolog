@@ -119,3 +119,10 @@ pr18_26:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("Ko
 pr18_29(List,A,B):-max_el(List,Max),Max>A,Max<B,!.
 
 pr18_29:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("a = "),read(A),nl,write("b = "),read(B),pr18_29(List,A,B),!.
+%18.38
+pr18_38(List,A,B,Kol):-pr18_38(List,A,B,0,Kol),!.
+pr18_38([H|T],A,B,K,Kol):-H>=A,H=<B,K1 is K+1,pr18_38(T,A,B,K1,Kol),!.
+pr18_38([_|T],A,B,K,Kol):-pr18_38(T,A,B,K,Kol),!.
+pr18_38([],_,_,K,K):-!.
+
+pr18_38:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("a = "),read(A),nl,write("b = "),read(B),pr18_38(List,A,B,Kol),write("Kolvo = "),write(Kol),!.
