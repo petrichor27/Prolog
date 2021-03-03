@@ -68,3 +68,13 @@ kolvo_povt([],_,K,K):-!.
 lenght(L,Len):-lenght(L,0,Len),!.
 lenght([_|T],L,Len):-L1 is L+1,lenght(T,L1,Len),!.
 lenght([],L,L):-!.
+%18.1
+max_el([H|T],Max,M):-(H>Max->Max1 is H;Max1 is Max),max_el(T,Max1,M),!.
+max_el([],Max,Max):-!.
+
+kolvo_after_max([H|T],Kol):-max_el(T,H,Max),kolvo_povt([H|T],Max,KolMax),kolvo_after_max([H|T],KolMax,Max,0,Kol),!.
+kolvo_after_max([Max|T],KolMax,Max,Kol,K):-K1 is KolMax-1,kolvo_after_max(T,K1,Max,Kol,K),!.
+kolvo_after_max([H|T],KolMax,Max,Kol,K):-H\=Max,(KolMax\=0->kolvo_after_max(T,KolMax,Max,Kol,K);Kol1 is Kol+1,kolvo_after_max(T,KolMax,Max,Kol1,K)),!.
+kolvo_after_max([],_,_,K,K):-!.
+
+pr18_1:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),kolvo_after_max(List,Kolvo),write("Kolvo = "),write(Kolvo),nl,!.
