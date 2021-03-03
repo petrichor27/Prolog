@@ -84,3 +84,9 @@ index([],_,I,_,I):-!.
 index([H|T],Min,Index,TempI,I):-(H<Min->Min1 is H,Index1 is TempI;Min1 is Min,Index1 is Index),TempI1 is TempI+1,index(T,Min1,Index1,TempI1,I),!.
 
 pr18_2:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),index(List,I),write("Index = "),write(I),nl,!.
+%18.14
+kolvo_v_int(List,A,B,Kol):-kolvo_v_int(List,A,B,0,Kol),!.
+kolvo_v_int([H|T],A,B,Kol,K):-(H>A,H<B->Kol1 is Kol+1;Kol1 is Kol),kolvo_v_int(T,A,B,Kol1,K),!.
+kolvo_v_int([],_,_,K,K):-!.
+
+pr18_14:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("a = "),read(A),nl,write("b = "),read(B),kolvo_v_int(List,A,B,Kol),write("Kolvo = "),write(Kol),nl,!.
