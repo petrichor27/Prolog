@@ -103,3 +103,15 @@ pr18_16([H|T],M):-(H\=M->write(H),write(" "),pr18_16(T,M)),!.
 pr18_16(List):-max_els(List,Max1,Max2),write("Elements:"),nl,pr18_16(List,Max1,Max2),!.
 
 pr18_16:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),pr18_16(List),!.
+%18.26
+min_els([H|T],M1,M2):-min_els(H,T,M1,M2),!.
+min_els(H,[H1|T],M1,M2):-(H\=H1->(H<H1->min_els(T,H,H1,M1,M2);min_els(T,H1,H,M1,M2));min_els(H,T,M1,M2)),!.
+min_els([H|T],Min1,Min2,M1,M2):-(H<Min1->Min11 is H,Min22 is Min1;(H<Min2->Min11 is Min1,Min22 is H);Min11 is Min1,Min22 is Min2),min_els(T,Min11,Min22,M1,M2),!.
+min_els([],Min1,Min2,Min1,Min2):-!.
+
+pr18_26(List,Kolvo):-min_els(List,Min1,Min2),pr18_26(List,Min1,Min2,Kolvo),!.
+pr18_26([M1|T],M1,M2,Kol):-pr18_26_1(T,M2,0,Kol),!.
+pr18_26([M2|T],M1,M2,Kol):-pr18_26_1(T,M1,0,Kol),!.
+pr18_26([_|T],M1,M2,Kol):-pr18_26(T,M1,M2,Kol),!.
+pr18_26_1([H|T],M,K,Kol):-(H\=M->K1 is K+1,pr18_26_1(T,M,K1,Kol);Kol is K),!.
+pr18_26:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("Kolvo = "),pr18_26(List,Kolvo),write(Kolvo),!.
