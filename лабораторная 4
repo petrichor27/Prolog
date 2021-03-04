@@ -134,3 +134,19 @@ pr18_38([_|T],A,B,K,Kol):-pr18_38(T,A,B,K,Kol),!.
 pr18_38([],_,_,K,K):-!.
 
 pr18_38:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),write("a = "),read(A),nl,write("b = "),read(B),pr18_38(List,A,B,Kol),write("Kolvo = "),write(Kol),!.
+%18.44
+pr18_44([H|T]):-(pr18_44_1(H)->real(T);int(T)),!.
+
+%false is float
+pr18_44_1(H):-H=0;(H>0->pos(H,0);neg(H,0)),!.
+pos(H,X):-X is H,!.
+pos(H,X):-(X<H->X1 is X+1,pos(H,X1);fail).
+neg(H,X):-X is H,!.
+neg(H,X):-(X>H->X1 is X-1,pos(H,X1);fail).
+
+int([]):-!.
+int([H|T]):-pr18_44_1(H),real(T),!.
+real([]):-!.
+real([H|T]):-not(pr18_44_1(H)),int(T),!.
+
+pr18_44:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),pr18_44(List),!.
