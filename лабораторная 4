@@ -150,3 +150,14 @@ real([]):-!.
 real([H|T]):-not(pr18_44_1(H)),int(T),!.
 
 pr18_44:-write("Kolvo = "),read(N),write("List:"),nl,read_list(N,List),pr18_44(List),!.
+%18.50
+append1([],List2,List2).
+append1([H|T1],List2,[H|T2]):-append1(T1,List2,T2).
+
+pr18_50([],_,_,[]):-!.
+pr18_50([H|L1],L2,L11,[H|L3]):-kolvo_povt(L2,H,Kol1),kolvo_povt(L11,H,Kol2),Kol1=0,Kol2=1,pr18_50(L1,L2,L11,L3),!.
+pr18_50([_|L1],L2,L11,L3):-pr18_50(L1,L2,L11,L3),!.
+
+pr18_50_1(L1,L2,L3):-pr18_50(L1,L2,L1,L31),pr18_50(L2,L1,L2,L32),append1(L31,L32,L3),!.
+
+pr18_50:-write("Kolvo = "),read(N1),write("List1:"),nl,read_list(N1,List1),write("Kolvo = "),read(N2),write("List2:"),nl,read_list(N2,List2),pr18_50_1(List1,List2,List3),write_list(List3),!.
