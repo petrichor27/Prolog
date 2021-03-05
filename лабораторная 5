@@ -138,16 +138,19 @@ pr6:-Men=[_,_,_,_],
 
 %7
 pr7:-Competition=[_,_,_],
+    in_list(Competition,[simon,_,_]),
     in_list(Competition,[richard,WHO1,_]),
     in_list(Competition,[michael,_,_]),
-    in_list(Competition,[simon,_,_]),
+    in_list(Competition,[_,_,american]),
     in_list(Competition,[WHO2,_,australian]),
     in_list(Competition,[_,criket,_]),
+    in_list(Competition,[_,tennis,_]),
+    in_list(Competition,[_,basketball,_]),
     in_list(Competition,[michael,basketball,_]),
     not(in_list(Competition,[michael,_,american])),
     in_list(Competition,[simon,_,israeli]),
     not(in_list(Competition,[simon,tennis,_])),
-    el_no(Competition,1,[_,cricket,_]),
+    write(Competition),nl,
     write("richard - "),write(WHO1),nl,write("australian - "),write(WHO2),!.
 
 % 8
