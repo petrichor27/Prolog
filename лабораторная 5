@@ -109,12 +109,12 @@ pr5:-Drinks=[_,_,_,_],
     in_list(Drinks,[_,water]),
     not(in_list(Drinks,[bottle,water])),
     not(in_list(Drinks,[bottle,milk])),
-    next_to([_,lemonade],[jug,_],Drinks),
-    next_to([_,lemonade],[_,kvass],Drinks),
+    not(in_list(Drinks,[jug,lemonade])),
+    not(in_list(Drinks,[jug,kvass])),
     not(in_list(Drinks,[jar,lemonade])),
     not(in_list(Drinks,[jar,water])),
-    next_to([glass,_],[jar,_],Drinks),
-    next_to([glass,_],[_,milk],Drinks),
+    not(in_list(Drinks,[glass,milk])),
+    not(in_list(Drinks,[jar,milk])),
     write(Drinks),!.
       
 %6
