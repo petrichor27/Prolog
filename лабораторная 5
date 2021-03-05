@@ -95,3 +95,26 @@ pr4:-Factory=[_,_,_],
     write("locksmith - "),write(WHO1),nl,
     write("turner - "),write(WHO2),nl,
     write("welder - "),write(WHO3),!.
+
+%5 
+pr5:-Drinks=[_,_,_,_],
+
+    in_list(Drinks,[bottle,_]),
+    in_list(Drinks,[glass,_]),
+    in_list(Drinks,[jug,_]),
+    in_list(Drinks,[jar,_]),
+    in_list(Drinks,[_,lemonade]),
+    in_list(Drinks,[_,milk]),
+    in_list(Drinks,[_,kvass]),
+    in_list(Drinks,[_,water]),
+    not(in_list(Drinks,[bottle,water])),
+    not(in_list(Drinks,[bottle,milk])),
+    next_to([_,lemonade],[jug,_],Drinks),
+    next_to([_,lemonade],[_,kvass],Drinks),
+    not(in_list(Drinks,[jar,lemonade])),
+    not(in_list(Drinks,[jar,water])),
+    next_to([glass,_],[jar,_],Drinks),
+    next_to([glass,_],[_,milk],Drinks),
+    write(Drinks),!.
+    
+    
