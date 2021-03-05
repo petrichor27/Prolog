@@ -150,3 +150,21 @@ pr7:-Competition=[_,_,_],
     el_no(Competition,1,[_,cricket,_]),
     write("richard - "),write(WHO1),nl,write("australian - "),write(WHO2),!.
 
+% 8
+pr8:-Children=[_,_,_,_,_],
+    in_list(Children,[alik,_]),
+    in_list(Children,[borya,_]),
+    in_list(Children,[vitya,_]),
+    in_list(Children,[lena,_]),
+    in_list(Children,[dasha,_]),
+    in_list(Children,[_,kharkov]),
+    in_list(Children,[_,uman]),
+    in_list(Children,[_,poltava]),
+    in_list(Children,[_,slavyansk]),
+    in_list(Children,[_,kramatorsk]),
+
+    (not(in_list(Children,[alik,uman]))->in_list(Children,[borya,kramatorsk]);in_list(Children,[alik,uman])),
+    (in_list(Children,[borya,kharkov]);in_list(Children,[vitya,kharkov])),
+    (not(in_list(Children,[vitya,slavyansk]))->in_list(Children,[lena,kharkov]);in_list(Children,[vitya,slavyansk])),
+    (in_list(Children,[dasha,uman]);in_list(Children,[lena,kramatorsk])),
+     write(Children),!.
