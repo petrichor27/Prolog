@@ -394,9 +394,11 @@ question11(X11):- write("Замужем/женат?"),nl,
 
 
 pr:- question1(X1),question2(X2),question3(X3),question4(X4),question5(X5),question6(X6),question7(X7),question8(X8),question9(X9),question10(X10),question11(X11),scandinavia(X,X1),god(X,X2),strength(X,X3),power(X,X4),gender(X,X5),transform(X,X6),ancient(X,X7),patron(X,X8),descendant(X,X9),fearsome(X,X10),marital_status(X,X11),nl,write(X),!.
+pr:-write("Неизвестный персонаж"),!,fail.
 
 %3
 pr3:-question1(X1),question2(X2),question3(X3),((X1=0,X2=2;(X1=1;X1=0),X2=0,X3=1),scandinavia(X,X1),god(X,X2),strength(X,X3),nl,write(X);sokr3(X1,X2,X3)),!.
+pr3:-write("Неизвестный персонаж"),!,fail.
 
 sokr3(0,0,0):-question4(X4),(X4=2,scandinavia(X,0),god(X,0),strength(X,0),power(X,X4),nl,write(X);sokr41(X4)),!.
 
@@ -428,6 +430,7 @@ sokr8(1,0):-question9(X9),question10(X10),scandinavia(X,1),god(X,0),strength(X,0
 
 %4
 pr4:-question1(X1),question2(X2),question3(X3),((X1=0,X2=2;(X1=1;X1=0),X2=0,X3=1),scandinavia(X,X1),god(X,X2),strength(X,X3),nl,write(X);s3(X1,X2,X3)),!.
+pr4:-write("Неизвестный персонаж"),!,fail.
 
 s3(0,0,0):-question4(X4),(X4=2,scandinavia(X,0),god(X,0),strength(X,0),power(X,X4),nl,write(X);s41(X4)),!.
 
