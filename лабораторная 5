@@ -79,3 +79,19 @@ pr3:-Dress=[_,_,_],
     in_list(Dress,[natasha,_,green]),
     write(Dress),!.
     
+%4 locksmith - слесарь, turner - токарь and welder - сварщик
+pr4:-Factory=[_,_,_],
+
+    in_list(Factory,[locksmith,WHO1,_]),
+    in_list(Factory,[turner,WHO2,_]),
+    in_list(Factory,[welder,WHO3,_]),
+    in_list(Factory,[_,borisov,_]),
+    in_list(Factory,[_,ivanov,_]),
+    in_list(Factory,[_,semenov,_]),
+    in_list(Factory,[locksmith,_,no]),
+    not(in_list(Factory,[turner,semenov,_])),
+    not(in_list(Factory,[locksmith,semenov,_])),
+    in_list(Factory,[_,borisov,sister]),
+    write("locksmith - "),write(WHO1),nl,
+    write("turner - "),write(WHO2),nl,
+    write("welder - "),write(WHO3),!.
