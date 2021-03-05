@@ -116,5 +116,22 @@ pr5:-Drinks=[_,_,_,_],
     next_to([glass,_],[jar,_],Drinks),
     next_to([glass,_],[_,milk],Drinks),
     write(Drinks),!.
-    
-    
+      
+%6
+pr6:-Men=[_,_,_,_],
+    in_list(Men,[voronov,_]),
+    in_list(Men,[pavlov,_]),
+    in_list(Men,[levitskiy,_]),
+    in_list(Men,[saharov,_]),
+    in_list(Men,[_,dancer]),
+    in_list(Men,[_,artist]),
+    in_list(Men,[_,singer]),
+    in_list(Men,[_,author]),
+    not(in_list(Men,[voronov,singer])),
+    not(in_list(Men,[levitskiy,singer])),
+    not(in_list(Men,[pavlov,author])),
+    not(in_list(Men,[pavlov,artist])),
+    not(in_list(Men,[saharov,author])),
+    not(in_list(Men,[voronov,author])),
+    not(in_list(Men,[voronov,artist])),
+    write(Men),!.
