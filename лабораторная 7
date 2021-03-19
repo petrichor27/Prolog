@@ -156,3 +156,11 @@ rand_z(S1,S2,S3,L):-random_between(32,126,X),(X\=S1,X\=S2,X\=S3->L=[S1,X,S3];ran
 write_ListOfList([]):-!.
 write_ListOfList([H|List]):-write_str(H),nl,write_ListOfList(List),!.
 
+%13
+pr13:-read_str(L,_),pr13(L).
+pr13(L):-pr13(L,0,NewL),write_str(NewL).
+pr13([],_,[]):-!.
+pr13([H|L],N,[97|NewL]):-0 is N mod 2,H\=97,H\=98->N1 is N+1,pr13(L,N1,NewL),!.
+pr13([_|L],N,[99|NewL]):-0 is N mod 2->N1 is N+1,pr13(L,N1,NewL),!.
+pr13([H|L],N,[H|NewL]):-N1 is N+1,pr13(L,N1,NewL),!.
+
