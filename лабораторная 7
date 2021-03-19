@@ -93,3 +93,14 @@ before0([_|L],K):-bf(L,0,K).
 bf([48|L],K1,K):-K2 is K1+1,bf(L,K2,K),!.
 bf([_|L],K1,K):-bf(L,K1,K),!.
 bf([],K,K):-!.
+
+%8
+pr8:-read_str(List,_),check(List,120),check(List,119),earlier(List,S),write_str([S]).
+check([S|_],S):-!.
+check([_|L],S):-check(L,S),!.
+check([],S):-write_str([S]),write(" not found"),!,fail.
+
+earlier([120|_],120):-!.
+earlier([119|_],119):-!.
+earlier([_|L],S):-earlier(L,S),!.
+earlier([],_):-!,fail.
