@@ -11,3 +11,19 @@ r_str(X,A,B,N,K):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1).
 
 %1
 pr1:-read_str(List,Lenght),write_str(List),write(", "),write_str(List),write(", "),write_str(List),nl,write("Lenght = "),write(Lenght).
+
+%2
+pr2:-read_str(List,_),count_words(List,0,K),write(K),!.
+count_words([],K,K):-!.
+count_words(A,I,K):-skip_space(A,A1),get_word(A1,Word,A2),Word\=[],I1 is I+1,count_words(A2,I1,K),!.
+count_words(_,K,K).
+
+skip_space([32|T],A1):-skip_space(T,A1),!.
+skip_space(A1,A1).
+
+get_word([],[],[]):-!.
+get_word(A,Word,A2):-get_word(A,[],Word,A2).
+get_word([],W,W,[]).
+get_word([32|T],W,W,T):-!.
+get_word([H|T],W,W1,A2):-append(W,[H],W2),get_word(T,W2,W1,A2).
+
