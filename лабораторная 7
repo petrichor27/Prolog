@@ -49,3 +49,17 @@ kolvo_povt([],_,K,K):-!.
 frequent_word(A,TempA,FreqW,W,MaxK):-skip_space(TempA,A1),get_word(A1,TempW,A2),TempW\=[],kolvo_povt(A,TempW,K1),(K1>MaxK->frequent_word(A,A2,TempW,W,K1);frequent_word(A,A2,FreqW,W,MaxK)),!.
 frequent_word(_,[],W,W,_):-!.
 
+%4
+pr4:-read_str(List,Lenght),write("Lenght = "),write(Lenght),nl,(Lenght>5->first(List,Lenght);second(List,Lenght)).
+
+first([H|L],N):-write_str([H]),fir(L,2),rst(L,N).
+fir(_,0):-!.
+fir([H|L],N):-write_str([H]),N1 is N-1,fir(L,N1),!.
+rst([],1):-!.
+rst([_|L],N):-N>4->N1 is N-1,rst(L,N1),!.
+rst([H|L],N):-N=<4,write_str([H]),N1 is N-1,rst(L,N1),!.
+
+second([H|_],N):-sec(H,N).
+sec(_,0):-!.
+sec(H,N):-write_str([H]),N1 is N-1,sec(H,N1),!.
+
