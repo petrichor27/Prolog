@@ -80,3 +80,16 @@ write3([H|L],N):-0 is N mod 3,N\=0->write_str([H]),nl,N1 is N+1,write3(L,N1),!.
 write3([_|L],N):-N1 is N+1,write3(L,N1),!.
 write3([],_):-!.
 
+%7
+pr7:-read_str(List,L),kol_P_M(List,KP,KM),before0(List,K0),write("count of +: "),write(KP),nl,write("count of -: "),write(KM),nl,write("count of symbols before 0: "),write(K0).
+
+kol_P_M(L,KP,KM):-kol_P_M(L,0,0,KP,KM).
+kol_P_M([43|L],P,M,KP,KM):-P1 is P+1,kol_P_M(L,P1,M,KP,KM),!.
+kol_P_M([45|L],P,M,KP,KM):-M1 is M+1,kol_P_M(L,P,M1,KP,KM),!.
+kol_P_M([_|L],P,M,KP,KM):-kol_P_M(L,P,M,KP,KM),!.
+kol_P_M([],P,M,P,M):-!.
+
+before0([_|L],K):-bf(L,0,K).
+bf([48|L],K1,K):-K2 is K1+1,bf(L,K2,K),!.
+bf([_|L],K1,K):-bf(L,K1,K),!.
+bf([],K,K):-!.
