@@ -164,3 +164,11 @@ pr13([H|L],N,[97|NewL]):-0 is N mod 2,H\=97,H\=98->N1 is N+1,pr13(L,N1,NewL),!.
 pr13([_|L],N,[99|NewL]):-0 is N mod 2->N1 is N+1,pr13(L,N1,NewL),!.
 pr13([H|L],N,[H|NewL]):-N1 is N+1,pr13(L,N1,NewL),!.
 
+%14 цифры на 48-57
+pr14:-read_str(L,_),pr14(L,K),write("Kolvo = "),write(K).
+pr14(L,K):-pr14(L,0,K).
+pr14([],K,K):-!.
+pr14([H|L],K,Kol):-H>=48,H=<57->K1 is K+1,pr14(L,K1,Kol),!.
+pr14([_|L],K,Kol):-pr14(L,K,Kol),!.
+
+
