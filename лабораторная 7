@@ -27,3 +27,25 @@ get_word([],W,W,[]).
 get_word([32|T],W,W,T):-!.
 get_word([H|T],W,W1,A2):-append(W,[H],W2),get_word(T,W2,W1,A2).
 
+%3
+pr3:-read_str(List,_),frequent_word(List,Word),write_str(Word),!.
+frequent_word(A,FreqW):-skip_space(A,A1),get_word(A1,TempW,_),TempW\=[],kolvo_povt(A,TempW,K),frequent_word(A,A,TempW,FreqW,K),!.
+
+sub_list([H|T1],[H|T]):-sub_list(T1,T),!.
+sub_list([],[32|_]):-!.
+sub_list([],[]):-!.
+sub(S,L):-S=L,!.
+sub([H|T1],[H|T]):-sub_list(T1,T),!.
+sub([H1|T1],[_|T]):-sub([H1|T1],T),!.
+sub([],[32|_]):-!.
+sub([],[]):-!.
+
+kolvo_povt1([E|T],[E|L],K,Kol):-(sub(L,T)->K1 is K+1;K1 is K),kolvo_povt(T,[E|L],K1,Kol),!.
+kolvo_povt(L,El,K):-kolvo_povt(L,El,0,K),!.
+kolvo_povt([32|T],El,K,Kol):-kolvo_povt1(T,El,K,Kol).
+kolvo_povt([_|T],El,K,Kol):-kolvo_povt(T,El,K,Kol),!.
+kolvo_povt([],_,K,K):-!.
+
+frequent_word(A,TempA,FreqW,W,MaxK):-skip_space(TempA,A1),get_word(A1,TempW,A2),TempW\=[],kolvo_povt(A,TempW,K1),(K1>MaxK->frequent_word(A,A2,TempW,W,K1);frequent_word(A,A2,FreqW,W,MaxK)),!.
+frequent_word(_,[],W,W,_):-!.
+
