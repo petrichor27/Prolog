@@ -73,3 +73,10 @@ numbs([El|L],El,N):-write(N),nl,N1 is N+1,numbs(L,El,N1),!.
 numbs([_|L],El,N):-N1 is N+1,numbs(L,El,N1),!.
 numbs([],_,_):-!.
 
+%6
+pr6:-read_str(List,_),write3(List).
+write3(L):-write3(L,0).
+write3([H|L],N):-0 is N mod 3,N\=0->write_str([H]),nl,N1 is N+1,write3(L,N1),!.
+write3([_|L],N):-N1 is N+1,write3(L,N1),!.
+write3([],_):-!.
+
