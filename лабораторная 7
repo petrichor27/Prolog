@@ -109,3 +109,16 @@ earlier([],_):-!,fail.
 pr9:-read_str(List1,L1),read_str(List2,L2),(L1>L2->L is L1-L2,write_Nraz(List1,L);(L2>L1->L is L2-L1,write_Nraz(List2,L);write("strings are equal"))).
 write_Nraz(_,0):-!.
 write_Nraz(L,N):-write_str(L),N1 is N-1,nl,write_Nraz(L,N1),!.
+
+%10
+pr10:-read_str(L,_),(abc(L)->zam(L);addZ(L)).
+abc([97|L]):-bc(L).
+bc([98|L]):-c(L).
+c([99|_]).
+
+zam(L):-zam(L,3,L1),append([119,119,119],L1,List),write_str(List).
+zam(L,0,L):-!.
+zam([_|L],N,L1):-N1 is N-1,zam(L,N1,L1),!.
+
+addZ(L):-append(L,[122,122,122],List),write_str(List).
+
