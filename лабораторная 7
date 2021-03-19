@@ -10,7 +10,7 @@ r_str(10,A,A,N,N):-!.
 r_str(X,A,B,N,K):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1).
 
 %1
-pr1:-read_str(List,Lenght),write_str(List),write(", "),write_str(List),write(", "),write_str(List),nl,write("Lenght = "),write(Lenght).
+pr1:-read_str(List,Length),write_str(List),write(", "),write_str(List),write(", "),write_str(List),nl,write("Lenght = "),write(Length).
 
 %2
 pr2:-read_str(List,_),count_words(List,0,K),write(K),!.
@@ -50,7 +50,7 @@ frequent_word(A,TempA,FreqW,W,MaxK):-skip_space(TempA,A1),get_word(A1,TempW,A2),
 frequent_word(_,[],W,W,_):-!.
 
 %4
-pr4:-read_str(List,Lenght),write("Lenght = "),write(Lenght),nl,(Lenght>5->first(List,Lenght);second(List,Lenght)).
+pr4:-read_str(List,Length),write("Length = "),write(Length),nl,(Length>5->first(List,Length);second(List,Length)).
 
 first([H|L],N):-write_str([H]),fir(L,2),rst(L,N).
 fir(_,0):-!.
@@ -64,7 +64,7 @@ sec(_,0):-!.
 sec(H,N):-write_str([H]),N1 is N-1,sec(H,N1),!.
 
 %5
-pr5:-read_str(List,Lenght),last_sim(List,Lenght,El),numbs(List,El).
+pr5:-read_str(List,Length),last_sim(List,Length,El),numbs(List,El).
 last_sim([_|L],N,El):-N>1->N1 is N-1,last_sim(L,N1,El),!.
 last_sim([H],1,H):-!.
 
