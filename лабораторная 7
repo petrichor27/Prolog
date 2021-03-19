@@ -171,4 +171,9 @@ pr14([],K,K):-!.
 pr14([H|L],K,Kol):-H>=48,H=<57->K1 is K+1,pr14(L,K1,Kol),!.
 pr14([_|L],K,Kol):-pr14(L,K,Kol),!.
 
+%15
+pr15:-read_str(L,_),pr15(L),write("Yes").
+pr15([]):-!.
+pr15([H|_]):-H\=97,H\=98,H\=99->!,write("No"),fail.
+pr15([_|L]):-pr15(L),!.
 
