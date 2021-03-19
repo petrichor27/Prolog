@@ -132,3 +132,27 @@ dop(L,Len):-dop(L,Len,L1),write_str(L1).
 dop(L,12,L):-!.
 dop(L,Len,L1):-append(L,[111],List),Len1 is Len+1,dop(List,Len1,L1),!.
 
+%12
+pr12:-read_str(L,Len),Len1 is Len div 3,length(List,Len1),fragments(List,L,NewList),rand_zam(NewList,NewNewList),sort(0,=<,NewNewList,Sorted),write_ListOfList(Sorted).
+fragments(List,L,List):-length(L,N),N<3,!.
+fragments(List,L,NList):-f(L,MiniList,EndL),in_list(List,MiniList),fragments(List,EndL,NList),!.
+
+f(L,MiniList,EndL):-f(L,3,MiniList,EndL).
+f(EndL,0,[],EndL):-!.
+f([H|TempL],N,[H|MiniList],EndL):-N1 is N-1,f(TempL,N1,MiniList,EndL),!.
+
+in_list([El|_],El).
+in_list([_|T],El):-in_list(T,El).
+
+%в таблице символы с номерами 32-126
+rand_zam([],[]):-!.
+rand_zam([H|List],[L|NewList]):-rand_zam1(H,L),rand_zam(List,NewList),!.
+rand_zam1([S1|H],L):-rand_zam1(H,S2,S3),rand_z(S1,S2,S3,L).
+rand_zam1([S2|H],S2,S3):-rand_zam1(H,S2,S3),!.
+rand_zam1([S3],_,S3):-!.
+
+rand_z(S1,S2,S3,L):-random_between(32,126,X),(X\=S1,X\=S2,X\=S3->L=[S1,X,S3];rand_z(S1,S2,S3,L)).
+
+write_ListOfList([]):-!.
+write_ListOfList([H|List]):-write_str(H),nl,write_ListOfList(List),!.
+
