@@ -122,3 +122,13 @@ zam([_|L],N,L1):-N1 is N-1,zam(L,N1,L1),!.
 
 addZ(L):-append(L,[122,122,122],List),write_str(List).
 
+%11
+pr11:-read_str(L,Len),(Len>10->ost(L);dop(L,Len)).
+ost(L):-ost(L,6,L1),write_str(L1).
+ost(_,0,_):-!.
+ost([H|L],N,[H|L1]):-N1 is N-1,ost(L,N1,L1),!.
+
+dop(L,Len):-dop(L,Len,L1),write_str(L1).
+dop(L,12,L):-!.
+dop(L,Len,L1):-append(L,[111],List),Len1 is Len+1,dop(List,Len1,L1),!.
+
