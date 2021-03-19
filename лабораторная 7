@@ -63,3 +63,13 @@ second([H|_],N):-sec(H,N).
 sec(_,0):-!.
 sec(H,N):-write_str([H]),N1 is N-1,sec(H,N1),!.
 
+%5
+pr5:-read_str(List,Lenght),last_sim(List,Lenght,El),numbs(List,El).
+last_sim([_|L],N,El):-N>1->N1 is N-1,last_sim(L,N1,El),!.
+last_sim([H],1,H):-!.
+
+numbs(L,El):-numbs(L,El,0).
+numbs([El|L],El,N):-write(N),nl,N1 is N+1,numbs(L,El,N1),!.
+numbs([_|L],El,N):-N1 is N+1,numbs(L,El,N1),!.
+numbs([],_,_):-!.
+
