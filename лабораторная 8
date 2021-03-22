@@ -74,3 +74,15 @@ frequent_word(L,W):-skip_space(L,L1),get_word(L1,TempW,L2),TempW\=[],kolvo_povt(
 frequent_word(_,[],W,W,_):-!.
 frequent_word(L,TempL,TempW,W,K):-skip_space(TempL,TempL1),get_word(TempL1,TempW1,TempL2),TempW1\=[],kolvo_povt(L,TempW1,K1),(K1>K->frequent_word(L,TempL2,TempW1,W,K1);frequent_word(L,TempL2,TempW,W,K)),!.
 
+%1.5
+pr1_5:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr1_5(List,Res),tell('C:/Users/Елизавета/Documents/Prolog/file1.txt'),write_str(Res),told.
+pr1_5(L,Res):-concaten(L,Line),check_words(L,Line,Res).
+
+check_words(List,L,Res):-check_words(List,L,[],Res).
+check_words([],_,R,R):-!.
+check_words([H|List],L,R,Res):-check_H(H,L)->append(R,[10],R1),append(R1,H,R2),check_words(List,L,R2,Res),!.
+check_words([_|List],L,R,Res):-check_words(List,L,R,Res),!.
+
+check_H([],_):-!.
+check_H(H,L):-skip_space(H,H1),get_word(H1,TempW,H2),TempW\=[],kolvo_povt(L,TempW,K),K=1->check_H(H2,L),!.
+
