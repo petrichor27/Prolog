@@ -205,3 +205,14 @@ find_rd([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
 find_d([],Num,N,NN):-find_word([],Num,N,NN),!.
 find_d([100|L],Num,N,[N|NN]):-Num1 is Num+1,find_word(L,Num1,0,NN),!.
 find_d([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
+
+%17
+pr17:-read_str(L,_),pr17(L,NewL),write_str(NewL).
+pr17([],[]):-!.
+pr17([120|L],NewL):-find_abc(L),pr17(L,NewL),!.
+pr17([H|L],[H|NewL]):-pr17(L,NewL),!.
+
+find_abc([97|L]):-find_bc(L).
+find_bc([98|L]):-find_c(L).
+find_c([99|_]):-!.
+
