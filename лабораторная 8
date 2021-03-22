@@ -49,3 +49,28 @@ pr1_3_write([_|L],Sred):-pr1_3_write(L,Sred),!.
 kol_A([],0):-!.
 kol_A([65|L],K1):-kol_A(L,K),K1 is K+1,!.
 kol_A([_|L],K):-kol_A(L,K),!.
+
+%1.4
+pr1_4:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr1_4(List).
+pr1_4(L):-concaten(L,Line),frequent_word(Line,Word),write_str(Word).
+
+concaten([],[]):-!.
+concaten([H|L],Line):-concaten(L,Line1),append(Line1,[32],Line2),append(Line2,H,Line),!.
+
+skip_space([32|T],A1):-skip_space(T,A1),!.
+skip_space(A1,A1).
+
+get_word([],[],[]):-!.
+get_word(A,Word,A2):-get_word(A,[],Word,A2).
+get_word([],W,W,[]).
+get_word([32|T],W,W,T):-!.
+get_word([H|T],W,W1,A2):-append(W,[H],W2),get_word(T,W2,W1,A2).
+
+kolvo_povt(L,El,Kol):-kolvo_povt(L,El,0,Kol).
+kolvo_povt([],_,K,K):-!.
+kolvo_povt(L,El,K,Kol):-skip_space(L,L1),get_word(L1,W,L2),(El = W->K1 is K+1,kolvo_povt(L2,El,K1,Kol);kolvo_povt(L2,El,K,Kol)),!.
+
+frequent_word(L,W):-skip_space(L,L1),get_word(L1,TempW,L2),TempW\=[],kolvo_povt(L,TempW,K),frequent_word(L,L2,TempW,W,K),!.
+frequent_word(_,[],W,W,_):-!.
+frequent_word(L,TempL,TempW,W,K):-skip_space(TempL,TempL1),get_word(TempL1,TempW1,TempL2),TempW1\=[],kolvo_povt(L,TempW1,K1),(K1>K->frequent_word(L,TempL2,TempW1,W,K1);frequent_word(L,TempL2,TempW,W,K)),!.
+
