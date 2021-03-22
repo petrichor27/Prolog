@@ -95,3 +95,9 @@ pr2_2([H|L]):-(H>=97,H=<122->pr2_2(L,H);pr2_2(L)),!.
 pr2_2([],_):-!.
 pr2_2([H|L],S):-(H>=97,H=<122->(H>S->pr2_2(L,H);!,fail);pr2_2(L,S)),!.
 
+%2.10
+pr2_10:-read_str(List,_),kolvo_A(List,K),write(K).
+kolvo_A([],0):-!.
+kolvo_A([65|L],K):-kolvo_A(L,K1),K is K1+1,!.
+kolvo_A([_|L],K):-kolvo_A(L,K),!.
+
