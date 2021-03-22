@@ -177,3 +177,31 @@ pr15([]):-!.
 pr15([H|_]):-H\=97,H\=98,H\=99->!,write("No"),fail.
 pr15([_|L]):-pr15(L),!.
 
+%16
+pr16:-read_str(L,_),find_word(L,Word_list),pr16(L,Word_list,NewL),write_str(NewL).
+pr16(L,W,NewL):-pr16(L,W,0,NewL).
+pr16(L,[],_,L):-!.
+pr16([],_,_,[]):-!.
+pr16([119|L],[H1|W],H1,[108,101,116,116,101,114|NewL]):-sdvig_l(L,3,SdL),Num1 is H1+4,pr16(SdL,W,Num1,NewL),!.
+pr16([H|L],[H1|W],Num,[H|NewL]):-Num1 is Num+1,pr16(L,[H1|W],Num1,NewL),!.
+
+sdvig_l(L,0,L):-!.
+sdvig_l([_|L],N,L1):-N1 is N-1,sdvig_l(L,N1,L1),!.
+
+find_word(L,Word_list):-find_word(L,0,0,Word_list),!.
+%в NN список позиций, в которых стоит w как начало word 
+find_word([],_,_,[]):-!.
+find_word([119|L],Num,_,NN):-Num1 is Num+1,find_ord(L,Num1,Num,NN),!.
+find_word([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
+
+find_ord([],Num,N,NN):-find_word([],Num,N,NN),!.
+find_ord([111|L],Num,N,NN):-Num1 is Num+1,find_rd(L,Num1,N,NN),!.
+find_ord([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
+
+find_rd([],Num,N,NN):-find_word([],Num,N,NN),!.
+find_rd([114|L],Num,N,NN):-Num1 is Num+1,find_d(L,Num1,N,NN),!.
+find_rd([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
+
+find_d([],Num,N,NN):-find_word([],Num,N,NN),!.
+find_d([100|L],Num,N,[N|NN]):-Num1 is Num+1,find_word(L,Num1,0,NN),!.
+find_d([_|L],Num,N,NN):-Num1 is Num+1,find_word(L,Num1,N,NN),!.
