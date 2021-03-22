@@ -26,3 +26,10 @@ max(List, MaxEl):- max(List, 0, MaxEl).
 max([],CurMax, CurMax):- !.
 max([H|T], CurMax, X):- H > CurMax, NewMax is H, max(T,NewMax,X), !.
 max([_|T], CurMax, X):- max(T, CurMax, X).
+
+%1.2
+pr1_2:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr1_2(0,Res,List),write(Res),!.
+pr1_2(Res,Res,[]):-!.
+pr1_2(K,Res,[H|T]):-not(in_list1(H,32)),K1 is K+1,pr1_2(K1,Res,T),!.
+pr1_2(K,Res,[_|T]):-pr1_2(K,Res,T).
+
