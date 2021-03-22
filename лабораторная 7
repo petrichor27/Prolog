@@ -231,3 +231,12 @@ pr18_ab([99|L],NewL):-pr18_abc(L,NewL).
 
 pr18_abc([H|_],_):-H>=48,H=<57,!.
 
+%19
+pr19:-read_str(L,_),pr19(L,K),write(K).
+pr19([],0):-!.
+pr19([97|L],K1):-pr19_a(L)->pr19(L,K),K1 is K+1,!.
+pr19([_|L],K):-pr19(L,K),!.
+
+pr19_a([98|L]):-pr19_ab(L).
+pr19_ab([97|_]):-!.
+
