@@ -36,3 +36,16 @@ pr1_2(K,Res,[_|T]):-pr1_2(K,Res,T).
 in_list1([H|_],H):-!.
 in_list1([_|T],El):-in_list1(T,El).
 
+%1.3
+pr1_3:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr1_3(List,Kol,KolL),Sred is Kol/KolL,nl,write("среднее количество А = "),write(Sred),pr1_3_write(List,Sred).
+
+pr1_3([],0,0):-!.
+pr1_3([H|List],Kol,KolL):-kol_A(H,K),write(K),pr1_3(List,Kol1,KolL1),Kol is Kol1+K,KolL is KolL1+1,!.
+
+pr1_3_write([],_):-!.
+pr1_3_write([H|L],Sred):-kol_A(H,K),K>Sred,nl,write_str(H),pr1_3_write(L,Sred),!.
+pr1_3_write([_|L],Sred):-pr1_3_write(L,Sred),!.
+
+kol_A([],0):-!.
+kol_A([65|L],K1):-kol_A(L,K),K1 is K+1,!.
+kol_A([_|L],K):-kol_A(L,K),!.
