@@ -240,3 +240,10 @@ pr19([_|L],K):-pr19(L,K),!.
 pr19_a([98|L]):-pr19_ab(L).
 pr19_ab([97|_]):-!.
 
+%20
+pr20:-read_str(L,_),pr20(L,ResL),write_str(ResL).
+pr20(L,ResL):-pr20(L,[],ResL).
+pr20([],ResL,ResL):-!.
+pr20(L,NewL,ResL):-NewL\=[]->skip_space(L,L1),get_word(L1,Word,L2),append(NewL,[32],NewL1),append(NewL1,Word,NewL2),pr20(L2,NewL2,ResL),!.
+pr20(L,NewL,ResL):-skip_space(L,L1),get_word(L1,Word,L2),append(NewL,Word,NewL1),pr20(L2,NewL1,ResL),!.
+
