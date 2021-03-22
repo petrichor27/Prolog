@@ -101,3 +101,20 @@ kolvo_A([],0):-!.
 kolvo_A([65|L],K):-kolvo_A(L,K1),K is K1+1,!.
 kolvo_A([_|L],K):-kolvo_A(L,K),!.
 
+%2.17
+pr2_17:-read_str(List,_),file_name(List,N),after_dot(N,Name),write_str(Name). 
+file_name([47|L],N):-get_name(L,N1,L2,LastSim),(LastSim=46->N = N1;file_name(L2,N)),!.
+file_name([_|L],N):-file_name(L,N),!.
+
+get_name([],[],[],_):-!.
+get_name(A,Word,A2,Ls):-get_name(A,[],Word,A2,Ls).
+get_name([],W,W,[],_).
+get_name([47|T],W,W,T,47):-!.
+get_name([46|T],W,W,T,46):-!.
+get_name([92|T],W,W,T,92):-!.
+get_name([H|T],W,W1,A2,Ls):-append(W,[H],W2),get_name(T,W2,W1,A2,Ls).
+
+after_dot([46|_],[]):-!.
+after_dot([],[]):-!.
+after_dot([H|L],[H|N]):-after_dot(L,N),!.
+
