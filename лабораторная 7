@@ -247,3 +247,10 @@ pr20([],ResL,ResL):-!.
 pr20(L,NewL,ResL):-NewL\=[]->skip_space(L,L1),get_word(L1,Word,L2),append(NewL,[32],NewL1),append(NewL1,Word,NewL2),pr20(L2,NewL2,ResL),!.
 pr20(L,NewL,ResL):-skip_space(L,L1),get_word(L1,Word,L2),append(NewL,Word,NewL1),pr20(L2,NewL1,ResL),!.
 
+
+%21
+pr21:-read_str(L,_),read_str(SimL,_),pr21(L,SimL).
+pr21(L,SimL):-pr21(L,SimL,[]).
+pr21([],_,ResL):-write_str(ResL),!.
+pr21([H|L],SimL,ResL):-(in_list(SimL,H)->(ResL\=[]->write_str(ResL),nl;write("")),pr21(L,SimL,[]);append(ResL,[H],ResL1),pr21(L,SimL,ResL1)),!.
+
