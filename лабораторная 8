@@ -86,3 +86,12 @@ check_words([_|List],L,R,Res):-check_words(List,L,R,Res),!.
 check_H([],_):-!.
 check_H(H,L):-skip_space(H,H1),get_word(H1,TempW,H2),TempW\=[],kolvo_povt(L,TempW,K),K=1->check_H(H2,L),!.
 
+%2.2
+pr2_2:-read_str(List,_),(pr2_2(List)->write("Yes");write("No")).
+
+pr2_2([]):-!.
+pr2_2([H|L]):-(H>=97,H=<122->pr2_2(L,H);pr2_2(L)),!.
+
+pr2_2([],_):-!.
+pr2_2([H|L],S):-(H>=97,H=<122->(H>S->pr2_2(L,H);!,fail);pr2_2(L,S)),!.
+
