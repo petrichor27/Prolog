@@ -33,3 +33,6 @@ pr1_2(Res,Res,[]):-!.
 pr1_2(K,Res,[H|T]):-not(in_list1(H,32)),K1 is K+1,pr1_2(K1,Res,T),!.
 pr1_2(K,Res,[_|T]):-pr1_2(K,Res,T).
 
+in_list1([H|_],H):-!.
+in_list1([_|T],El):-in_list1(T,El).
+
