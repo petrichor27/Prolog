@@ -216,3 +216,18 @@ find_abc([97|L]):-find_bc(L).
 find_bc([98|L]):-find_c(L).
 find_c([99|_]):-!.
 
+%18
+pr18:-read_str(L,_),pr18(L,NewL),write_str(NewL).
+pr18([],[]):-!.
+pr18([97|L],NewL):-pr18_a(L,NewL)->pr18_skip(L,NewL),!.
+pr18([H|L],[H|NewL]):-pr18(L,NewL),!.
+
+pr18_skip([98|L],NewL):-pr18_skip(L,NewL),!.
+pr18_skip([99|L],NewL):-pr18(L,NewL),!.
+
+pr18_a([98|L],NewL):-pr18_ab(L,NewL).
+
+pr18_ab([99|L],NewL):-pr18_abc(L,NewL).
+
+pr18_abc([H|_],_):-H>=48,H=<57,!.
+
