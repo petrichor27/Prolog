@@ -197,3 +197,21 @@ kol([],0):-!.
 kol([H1,H2|L],K):-H1>=48,H1=<57,H2=32->skip_space(L,L1),get_word(L1,W,_),W\=[],kol(L1,K1),K is K1+1,!.
 kol([_|L],K):-kol(L,K),!.
 
+%8.2
+pr8_2:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(L),seen,pr8_2(L,L1),pr5(L,L1,Sorted),write_list_str(Sorted).
+
+pr8_2([],[]):-!.
+pr8_2([H|L],[Sred|L1]):-pr8_2(H,W,K),Sred is W/K,pr8_2(L,L1),!.
+
+pr8_2([],0,0):-!.
+pr8_2([H|L],W,K):-bin(H,C),count_1(C,Wt),pr8_2(L,W1,K1),W is W1+Wt,K is K1+1,!.
+
+bin(H,C):-bin1(H,C1),reverse(C1,C).
+bin1(1,[1]):-!.
+bin1(0,[0]):-!.
+bin1(H,[N|C]):-N is H mod 2,H1 is H div 2,bin1(H1,C),!.
+
+count_1([],0):-!.
+count_1([1|L],W):-count_1(L,W1),W is W1+1,!.
+count_1([_|L],W):-count_1(L,W),!.
+
