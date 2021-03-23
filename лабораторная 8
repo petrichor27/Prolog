@@ -189,3 +189,11 @@ pr6([H|L],[H1|K]):-k_l(H,H1),pr6(L,K),!.
 k_l([],0):-!.
 k_l(L,K):-skip_space(L,L1),get_word(L1,W,L2),W\=[],k_l(L2,K1),K is K1+1,!.
 
+%7
+pr7:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr7(List,Kol),pr5(List,Kol,Sorted),write(Kol),nl,write_list_str(Sorted).
+pr7([],[]):-!.
+pr7([H|L],[H1|K]):-kol(H,H1),pr7(L,K),!.
+kol([],0):-!.
+kol([H1,H2|L],K):-H1>=48,H1=<57,H2=32->skip_space(L,L1),get_word(L1,W,_),W\=[],kol(L1,K1),K is K1+1,!.
+kol([_|L],K):-kol(L,K),!.
+
