@@ -169,3 +169,16 @@ pr4_10([],_,K,K):-!.
 pr4_10([H|L],S,K1,K):-(H>=97,H=<122;H>=65,H=<90),not(in_list1(S,H))->append(S,[H],S1),K2 is K1+1,pr4_10(L,S1,K2,K),!.
 pr4_10([_|L],S,K1,K):-pr4_10(L,S,K1,K),!.
 
+%5
+pr5:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List,Len),seen,pr5(List,Len,Sorted),write_list_str(Sorted).
+
+pr5(L,Len,S):-pr5(L,Len,[],[],S1,LenS1),(not(check_sort(S1,LenS1))->pr5(S1,LenS1,S);S = S1).
+
+pr5([],[],S,Len,S,Len):-!.
+pr5([H],[D],T,LenT,S,LenS):-append(T,[H],T1),append(LenT,[D],LenT1),pr5([],[],T1,LenT1,S,LenS),!.
+pr5([H1,H2|L],[D,D|Len],T,LenT,S,LenS):-append(T,[H1],T1),append(LenT,[D],LenT1),pr5([H2|L],[D|Len],T1,LenT1,S,LenS),!.
+pr5([H1,H2|L],[D1,D2|Len],T,LenT,S,LenS):-(D1<D2->append(T,[H1],T1),append(LenT,[D1],LenT1),pr5([H2|L],[D2|Len],T1,LenT1,S,LenS);append(T,[H2,H1],T1),append(LenT,[D2,D1],LenT1),pr5(L,Len,T1,LenT1,S,LenS)),!.
+
+check_sort([_],[_]):-!.
+check_sort([_,H2|L],[D1,D2|Len]):-D1=<D2->check_sort([H2|L],[D2|Len]),!.
+
