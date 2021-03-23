@@ -183,7 +183,7 @@ check_sort([_],[_]):-!.
 check_sort([_,H2|L],[D1,D2|Len]):-D1=<D2->check_sort([H2|L],[D2|Len]),!.
 
 %6
-pr6:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr6(List,Kol_word),write(Kol_word),nl,pr5(List,Kol_word,Sorted),write_list_str(Sorted).
+pr6:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(List),seen,pr6(List,Kol_word),pr5(List,Kol_word,Sorted),write_list_str(Sorted).
 pr6([],[]):-!.
 pr6([H|L],[H1|K]):-k_l(H,H1),pr6(L,K),!.
 k_l([],0):-!.
