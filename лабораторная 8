@@ -158,3 +158,14 @@ pr4_2([],S,S):-!.
 pr4_2([H|L],S,Ls):-H>=97,H=<122,not(in_list1(S,H))->append(S,[44,32,H],S1),pr4_2(L,S1,Ls),!.
 pr4_2([_|L],S,Ls):-pr4_2(L,S,Ls),!.
 
+%4.10
+pr4_10:-read_str(List,_),pr4_10(List,K),write(K).
+
+pr4_10([],0):-!.
+pr4_10([H|L],K):-(H>=97,H=<122;H>=65,H=<90),pr4_10(L,[H],1,K),!.
+pr4_10([_|L],K):-pr4_10(L,K),!.
+
+pr4_10([],_,K,K):-!.
+pr4_10([H|L],S,K1,K):-(H>=97,H=<122;H>=65,H=<90),not(in_list1(S,H))->append(S,[H],S1),K2 is K1+1,pr4_10(L,S1,K2,K),!.
+pr4_10([_|L],S,K1,K):-pr4_10(L,S,K1,K),!.
+
