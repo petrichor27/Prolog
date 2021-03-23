@@ -118,3 +118,32 @@ after_dot([46|_],[]):-!.
 after_dot([],[]):-!.
 after_dot([H|L],[H|N]):-after_dot(L,N),!.
 
+%3
+pr3:-read_str(List,_),pr3(List).
+pr3([]):-!.
+pr3([H|L]):-H>=48,H=<51,get_day(L,H,[H1|L1],Day),H1=32,get_month(L1,Mon,[H2|L2]),check_mon(Mon),H2=32,get_year(L2,Year,L3),nl,write_str(Day),write(" "),write_str(Mon),write(" "),write_str(Year),pr3(L3),!.
+pr3([_|L]):-pr3(L),!.
+
+get_day([H|L],F,L,Day):-H>=48,H=<57->append([F],[H],Day),!.
+
+get_month([32|L],[],[32|L]):-!.
+get_month([H|L],[H|M],L2):-get_month(L,M,L2),!.
+
+get_year(L,Y,L1):-get_year(L,Y,L1,4).
+get_year([],[],[],_):-!.
+get_year([H|L],[],[H|L],0):-!.
+get_year([H|L],[H|Y],L1,N):-N1 is N-1,get_year(L,Y,L1,N1),!.
+
+%месяцы в родительном падеже
+check_mon([1103,1085,1074,1072,1088,1103]):-!.
+check_mon([1092,1077,1074,1088,1072,1083,1103]):-!.
+check_mon([1084,1072,1088,1090,1072]):-!.
+check_mon([1072,1087,1088,1077,1083,1103]):-!.
+check_mon([1084,1072,1103]):-!.
+check_mon([1080,1102,1085,1103]):-!.
+check_mon([1080,1102,1083,1103]):-!.
+check_mon([1072,1074,1075,1091,1089,1090,1072]):-!.
+check_mon([1089,1077,1085,1090,1103,1073,1088,1103]):-!.
+check_mon([1086,1082,1090,1103,1073,1088,1103]):-!.
+check_mon([1085,1086,1103,1073,1088,1103]):-!.
+check_mon([1076,1077,1082,1072,1073,1088,1103]):-!.
