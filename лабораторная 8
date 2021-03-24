@@ -221,3 +221,20 @@ pr8_4([],_,[]):-!.
 pr8_4([H|S],F,[O1|O]):-dispersia(H,F,D),O1 is sqrt(D),pr8_4(S,F,O),!.
 
 dispersia(H,F,D):-Sred is (H+F)/2,D1 is (H-Sred)*(H-Sred),D2 is (F-Sred)*(F-Sred),D is D1+D2.
+
+%8.7
+pr8_7:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(L),seen,pr8_7(L,LRazn),pr5(L,LRazn,Sorted),write(LRazn),nl,write_list_str(Sorted).
+
+pr8_7([],[]):-!.
+pr8_7([H|L],[K|S]):-razn(H,K),pr8_7(L,S),!.
+
+razn(L,K):-razn(L,K1,K2),(K1>K2->K is K1-K2;K is K2-K1).
+razn([],0,0):-!.
+razn([_],0,0):-!.
+razn([H1,H2|L],K1,K2):-razn([H2|L],K11,K22),((H2>=65,H2=<90;H2>=97,H2=<122;H2>=1040,H2=<1103),glasn(H1),not(glasn(H2))->K1 is K11+1,K2 is K22;(H1>=65,H1=<90;H1>=97,H1=<122;H1>=1040,H1=<1103),glasn(H2),not(glasn(H1))->K2 is K22+1,K1 is K11;K1 is K11,K2 is K22),!.
+
+
+glasn(H):-(H=65;H=69;H=73;H=79;H=85;H=89),!.
+glasn(H):-(H=97;H=101;H=105;H=111;H=117;H=121),!.
+glasn(H):-(H=1040;H=1045;H=1048;H=1054;H=1059;H=1067;H=1069;H=1070;H=1071;H=1025),!.
+glasn(H):-(H=1072;H=1077;H=1105;H=1080;H=1091;H=1099;H=1101;H=1102;H=1103),!.
