@@ -215,3 +215,9 @@ count_1([],0):-!.
 count_1([1|L],W):-count_1(L,W1),W is W1+1,!.
 count_1([_|L],W):-count_1(L,W),!.
 
+%8.4
+pr8_4:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str(L),seen,pr8_2(L,[H|SredW]),pr8_4([H|SredW],H,OtklList),write(OtklList),pr5(L,OtklList,Sorted),write_list_str(Sorted).
+pr8_4([],_,[]):-!.
+pr8_4([H|S],F,[O1|O]):-dispersia(H,F,D),O1 is sqrt(D),pr8_4(S,F,O),!.
+
+dispersia(H,F,D):-Sred is (H+F)/2,D1 is (H-Sred)*(H-Sred),D2 is (F-Sred)*(F-Sred),D is D1+D2.
