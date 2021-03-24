@@ -238,3 +238,15 @@ glasn(H):-(H=65;H=69;H=73;H=79;H=85;H=89),!.
 glasn(H):-(H=97;H=101;H=105;H=111;H=117;H=121),!.
 glasn(H):-(H=1040;H=1045;H=1048;H=1054;H=1059;H=1067;H=1069;H=1070;H=1071;H=1025),!.
 glasn(H):-(H=1072;H=1077;H=1105;H=1080;H=1091;H=1099;H=1101;H=1102;H=1103),!.
+
+%8.11
+pr8_11:-see('C:/Users/Елизавета/Documents/Prolog/file.txt'),read_list_str([H|L]),seen,pr8_11([H|L],Dis),max_sred_wei(H,W,_),pr8_4(Dis,W,Otkl),pr5([H|L],Otkl,Sorted),write(W),nl,write(Dis),nl,write(Otkl),nl,write_list_str(Sorted).
+
+pr8_11([],[]):-!.
+pr8_11([H|L],[D|Dis]):-max_sred_wei(H,W,Els),dispersia_list(Els,W,D),pr8_11(L,Dis),!.
+
+max_sred_wei(L,Max,Els):-max_sred_wei(L,0,Max,[],Els).
+max_sred_wei([_,_],W,W,E,E):-!.
+max_sred_wei([H1,H2,H3|L],W,Max,E,Els):-bin(H1,C1),count_1(C1,W1),bin(H2,C2),count_1(C2,W2),bin(H3,C3),count_1(C3,W3),SW is (W1+W2+W3)/3,(SW>W->max_sred_wei([H2,H3|L],SW,Max,[W1,W2,W3],Els);max_sred_wei([H2,H3|L],W,Max,E,Els)),!.
+
+dispersia_list([W1,W2,W3],W,D):-A1 is (W1-W)*(W1-W),A2 is (W2-W)*(W2-W),A3 is (W3-W)*(W3-W),D is (A1+A2+A3)/2.
