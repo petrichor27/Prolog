@@ -13,6 +13,10 @@ r_str(-1,A,A,N,N,1):-!.
 r_str(10,A,A,N,N,0):-!.
 r_str(X,A,B,N,K,Flag):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1,Flag).
 
+read_str(A,N):-get0(X),r_str(X,A,[],N,0).
+r_str(10,A,A,N,N):-!.
+r_str(X,A,B,N,K):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1).
+
 write_list_str([]):-!.
 write_list_str([H|T]):-write_str(H),nl,write_list_str(T).
 
@@ -60,7 +64,6 @@ concaten([H|L],Line):-concaten(L,Line1),append(Line1,[32],Line2),append(Line2,H,
 skip_space([32|T],A1):-skip_space(T,A1),!.
 skip_space(A1,A1).
 
-get_word([],[],[]):-!.
 get_word(A,Word,A2):-get_word(A,[],Word,A2).
 get_word([],W,W,[]).
 get_word([32|T],W,W,T):-!.
