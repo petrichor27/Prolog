@@ -48,3 +48,26 @@ sochet_p([],0,_):-!.
 sochet_p([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet_p(Sub_set,K1,[H|Set]).
 sochet_p(Sub_set,K,[_|Set]):-sochet_p(Sub_set,K,Set).
 
+%2
+make_ar(0,[]):-!.
+make_ar(K,[K|Tail]):-K1 is K-1,make_ar(K1,Tail).
+
+pr2:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr2(Sl)),close(Sl).
+pr2(Sl):-make_ar(5,Positions),length(Itog_slovo,5),sochet(A_positions,2,Positions),del_a_pos(Positions,A_positions,Pos),put_a(Itog_slovo,A_positions),put_free(Itog_slovo,Pos,[b,c,d,e,f],3),write(Sl,Itog_slovo),put(Sl,10),fail.
+
+del_a_pos([],_,[]):-!.
+del_a_pos([H|L],A_pos,P):-in_list(A_pos,H),del_a_pos(L,A_pos,P),!.
+del_a_pos([H|L],A_pos,[H|P]):-del_a_pos(L,A_pos,P),!.
+
+put_a(S,Pos):-put_a(S,1,Pos).
+put_a([],_,_):-!.
+put_a([a|L],N,Pos):-in_list(Pos,N),N1 is N+1,put_a(L,N1,Pos),!.
+put_a([_|L],N,Pos):-N1 is N+1,put_a(L,N1,Pos),!.
+
+put_free(I,P,M,K):-build_razm_p(M,K,S1),put_f(I,1,P,S1).
+put_f(_,_,_,[]):-!.
+put_f([H|I],N,P,[H|L]):-in_list(P,N),N1 is N+1,put_f(I,N1,P,L),!.
+put_f([_|I],N,P,L):-N1 is N+1,put_f(I,N1,P,L),!.
+
+build_razm_p(_,0,_):-!.
+build_razm_p(A,N,[H|Perm]):-in_list(A,H),N1 is N-1,build_razm_p(A,N1,Perm).
