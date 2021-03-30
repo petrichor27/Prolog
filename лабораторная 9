@@ -118,3 +118,13 @@ pr9:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not
 pr9_1(Sl,KolA):-pr9(Sl,a,[b,c,d,e,f],KolA).
 pr9(Sl,H1,M1,KolA):-make_ar(7,Positions),length(Itog_slovo,7),sochet(A_positions,KolA,Positions),del_a_pos(Positions,A_positions,Pos1),put_sim(Itog_slovo,A_positions,H1),K is 7-KolA,put_free(Itog_slovo,Pos1,M1,K),write(Sl,Itog_slovo),put(Sl,10),fail.
 
+%10
+pr10:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr10_1(Sl)),close(Sl).
+pr10_1(Sl):-sochet(Bukvi,4,[a,b,c,d,e,f]),pr10(Sl,Bukvi).
+pr10(Sl,[H1,H2,H3,H4]):-make_ar(7,Pos),length(I,7),pr10_4r(Sl,I,[H1,H2,H3,H4],Pos),pr10_3r(Sl,I,[H1,H2,H3,H4],Pos),pr10_2r(Sl,I,[H1,H2,H3,H4],Pos).
+
+pr10_4r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,4,Pos),sochet([H],1,[H1,H2,H3,H4]),put_sim(I,Pos1,H),del_a_pos(Pos,Pos1,Pos2),del_a_pos([H1,H2,H3,H4],[H],L),put_free1(I,Pos2,L,3),write(Sl,I),put(Sl,10),fail.
+
+pr10_3r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,3,Pos),del_a_pos(Pos,Pos1,Pos2),sochet(Pos3,2,Pos2),del_a_pos(Pos2,Pos3,Pos4),sochet([X_3],1,[H1,H2,H3,H4]),del_a_pos([H1,H2,H3,H4],[X_3],L1),put_sim(I,Pos1,X_3),sochet([X_2],1,L1),del_a_pos(L1,[X_2],L2),put_sim(I,Pos3,X_2),put_free1(I,Pos4,L2,2),write(Sl,I),put(Sl,10),fail.
+
+pr10_2r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,2,Pos),del_a_pos(Pos,Pos1,Pos2),sochet(Pos3,2,Pos2),del_a_pos(Pos2,Pos3,Pos4),sochet(Pos5,2,Pos4),del_a_pos(Pos4,Pos5,Pos6),sochet([X1],1,[H1,H2,H3,H4]),del_a_pos([H1,H2,H3,H4],[X1],L1),put_sim(I,Pos1,X1),sochet([X2],1,L1),del_a_pos(L1,[X2],L2),put_sim(I,Pos3,X2),sochet([X3],1,L2),del_a_pos(L2,[X3],L3),put_sim(I,Pos5,X3),put_free1(I,Pos6,L3,1),write(Sl,I),put(Sl,10),fail.
