@@ -92,3 +92,18 @@ j([0|L],N,S,Len):-N1 is N+1,j(L,N1,S,Len),!.
 
 write_matr([]):-!.
 write_matr([H|T]):-write(H),nl,write_matr(T),!.
+
+
+pr3:-get_V(V),nl,get_edges(V,E),euler_N(E).
+
+in_list_exlude1([El|T],El,T).
+in_list_exlude1([H|T],El,[H|Tail]):-in_list_exlude1(T,El,Tail).
+
+b_a_r([],[]):-!.
+b_a_r(A,[El|Perm]):-in_list_exlude1(A,El,A1),b_a_r(A1,Perm).
+
+euler_N(E):-b_a_r(E,Way),length(E,L),path(L,Way),write(Way).
+path(L,T):-path1(L1,T),L1==L.
+path1(1,[_]):-!.
+path1(K,[[_,X]|[[X,Y]|T]]):-path1(K1,[[X,Y]|T]),K is K1+1.
+path1(K,[[_,X]|[[Y,X]|T]]):-path1(K1,[[X,Y]|T]),K is K1+1.
