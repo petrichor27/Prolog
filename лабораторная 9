@@ -37,3 +37,11 @@ pr1_5:-read_str(A,_),read(K),sochet(B,K,A),write_str(B),nl,fail.
 sochet([],0,_):-!.
 sochet([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet(Sub_set,K1,Set).
 sochet(Sub_set,K,[_|Set]):-sochet(Sub_set,K,Set).
+
+%1.6
+pr1_6:-read_str(A,_),read(K),sochet_p(B,K,A),write_str(B),nl,fail.
+
+sochet_p([],0,_):-!.
+sochet_p([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet_p(Sub_set,K1,[H|Set]).
+sochet_p(Sub_set,K,[_|Set]):-sochet_p(Sub_set,K,Set).
+
