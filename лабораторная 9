@@ -102,3 +102,9 @@ pr5(Sl,H1,H2,M2):-make_ar(6,Positions),length(Itog_slovo,6),sochet(A_positions,2
 pr6:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr6_1(Sl)),close(Sl).
 pr6_1(Sl):-sochet([H1],1,[a,b,c,d,e,f]),delete([a,b,c,d,e,f],H1,M1),sochet([H2],1,M1),delete(M1,H2,M2),pr6(Sl,H1,H2,M2).
 pr6(Sl,H1,H2,M2):-make_ar(7,Positions),length(Itog_slovo,7),sochet(A_positions,2,Positions),del_a_pos(Positions,A_positions,Pos1),put_sim(Itog_slovo,A_positions,H1),sochet(A_pos,3,Pos1),del_a_pos(Pos1,A_pos,Pos2),put_sim(Itog_slovo,A_pos,H2),put_free1(Itog_slovo,Pos2,M2,2),write(Sl,Itog_slovo),put(Sl,10),fail.
+
+%7
+pr7:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr7_1(Sl)),close(Sl).
+pr7_1(Sl):-sochet([H1,H2],2,[a,b,c,d,e,f]),delete([a,b,c,d,e,f],H1,M1),delete(M1,H2,M2),sochet([H3],1,M2),delete(M2,H3,M3),pr7(Sl,H1,H2,H3,M3).
+pr7(Sl,H1,H2,H3,M3):-make_ar(9,Positions),length(Itog_slovo,9),sochet(A_pos1,2,Positions),del_a_pos(Positions,A_pos1,Pos1),put_sim(Itog_slovo,A_pos1,H1),sochet(A_pos2,2,Pos1),del_a_pos(Pos1,A_pos2,Pos2),put_sim(Itog_slovo,A_pos2,H2),sochet(A_pos3,3,Pos2),del_a_pos(Pos2,A_pos3,Pos3),put_sim(Itog_slovo,A_pos3,H3),put_free1(Itog_slovo,Pos3,M3,2),write(Sl,Itog_slovo),put(Sl,10),fail.
+
