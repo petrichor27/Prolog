@@ -113,3 +113,8 @@ pr8:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not
 pr8_1(Sl,KolA):-pr8(Sl,a,[b,c,d,e,f],KolA).
 pr8(Sl,H1,M1,KolA):-make_ar(4,Positions),length(Itog_slovo,4),sochet(A_positions,KolA,Positions),del_a_pos(Positions,A_positions,Pos1),put_sim(Itog_slovo,A_positions,H1),K is 4-KolA,put_free1(Itog_slovo,Pos1,M1,K),write(Sl,Itog_slovo),put(Sl,10),fail.
 
+%9
+pr9:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr9_1(Sl,3)),not(pr9_1(Sl,4)),not(pr9_1(Sl,5)),not(pr9_1(Sl,6)),not(pr9_1(Sl,7)),close(Sl).
+pr9_1(Sl,KolA):-pr9(Sl,a,[b,c,d,e,f],KolA).
+pr9(Sl,H1,M1,KolA):-make_ar(7,Positions),length(Itog_slovo,7),sochet(A_positions,KolA,Positions),del_a_pos(Positions,A_positions,Pos1),put_sim(Itog_slovo,A_positions,H1),K is 7-KolA,put_free(Itog_slovo,Pos1,M1,K),write(Sl,Itog_slovo),put(Sl,10),fail.
+
