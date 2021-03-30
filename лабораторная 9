@@ -9,3 +9,11 @@ b_a_rp(A,N,Perm):-in_list(A,El),N1 is N-1,b_a_rp(A,N1,[El|Perm]).
 
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
+
+%1.2
+pr1_2:-read_str(A,_),b_a_p(A,[]).
+b_a_p([],Perm1):-write_str(Perm1),nl,!,fail.
+b_a_p(A,Perm):-in_list_exlude(A,El,A1),b_a_p(A1,[El|Perm]).
+
+in_list_exlude([El|T],El,T).
+in_list_exlude([H|T],El,[H|Tail]):-in_list_exlude(T,El,Tail).
