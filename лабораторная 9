@@ -128,3 +128,7 @@ pr10_4r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,4,Pos),sochet([H],1,[H1,H2,H3,H4]),
 pr10_3r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,3,Pos),del_a_pos(Pos,Pos1,Pos2),sochet(Pos3,2,Pos2),del_a_pos(Pos2,Pos3,Pos4),sochet([X_3],1,[H1,H2,H3,H4]),del_a_pos([H1,H2,H3,H4],[X_3],L1),put_sim(I,Pos1,X_3),sochet([X_2],1,L1),del_a_pos(L1,[X_2],L2),put_sim(I,Pos3,X_2),put_free1(I,Pos4,L2,2),write(Sl,I),put(Sl,10),fail.
 
 pr10_2r(Sl,I,[H1,H2,H3,H4],Pos):-sochet(Pos1,2,Pos),del_a_pos(Pos,Pos1,Pos2),sochet(Pos3,2,Pos2),del_a_pos(Pos2,Pos3,Pos4),sochet(Pos5,2,Pos4),del_a_pos(Pos4,Pos5,Pos6),sochet([X1],1,[H1,H2,H3,H4]),del_a_pos([H1,H2,H3,H4],[X1],L1),put_sim(I,Pos1,X1),sochet([X2],1,L1),del_a_pos(L1,[X2],L2),put_sim(I,Pos3,X2),sochet([X3],1,L2),del_a_pos(L2,[X3],L3),put_sim(I,Pos5,X3),put_free1(I,Pos6,L3,1),write(Sl,I),put(Sl,10),fail.
+
+%11
+pr11:-write("n = "),read(N),nl,write("k = "),read(K),nl,write("m = "),read(M),N1 is M+K,N2 is N1+4,((M=K;N1>N;N2<N)->write("Error"),!,fail;open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr11_1(Sl,N,K,M)),close(Sl)).
+pr11_1(Sl,N,K,M):-Alf=[a,b,c,d,e,f],sochet([A],1,Alf),del_a_pos(Alf,[A],Alf1),sochet([B],1,Alf1),del_a_pos(Alf1,[B],Alf2),make_ar(N,Pos),length(I,N),sochet(PosA,K,Pos),del_a_pos(Pos,PosA,Pos1),sochet(PosB,M,Pos1),del_a_pos(Pos1,PosB,Pos2),put_sim(I,PosA,A),put_sim(I,PosB,B),Kol is N-M-K,put_free1(I,Pos2,Alf2,Kol),write(Sl,I),put(Sl,10),fail.
