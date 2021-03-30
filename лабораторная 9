@@ -76,7 +76,7 @@ build_razm_p(A,N,[H|Perm]):-in_list(A,H),N1 is N-1,build_razm_p(A,N1,Perm).
 pr3:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr3(Sl)),close(Sl).
 pr3(Sl):-make_ar(5,Positions),length(Itog_slovo,5),sochet(A_positions,2,Positions),del_a_pos(Positions,A_positions,Pos),put_a(Itog_slovo,A_positions),put_free1(Itog_slovo,Pos,[b,c,d,e,f],3),write(Sl,Itog_slovo),put(Sl,10),fail.
 
-put_free1(I,P,M,K):-build_razm(/*[b,c,d,e,f]*/M,K,S1),put_f1(I,1,P,S1).
+put_free1(I,P,M,K):-build_razm(M,K,S1),put_f1(I,1,P,S1).
 put_f1(_,_,_,[]):-!.
 put_f1([H|I],N,P,[H|L]):-in_list(P,N),N1 is N+1,put_f1(I,N1,P,L),!.
 put_f1([_|I],N,P,L):-N1 is N+1,put_f1(I,N1,P,L),!.
