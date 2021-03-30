@@ -83,3 +83,12 @@ put_f1([_|I],N,P,L):-N1 is N+1,put_f1(I,N1,P,L),!.
 
 build_razm(_,0,_):-!.
 build_razm(A,N,[H|Perm]):-in_list_exlude(A,H,A1),N1 is N-1,build_razm(A1,N1,Perm).
+
+%4
+pr4:-open('C:/Users/Елизавета/Documents/Prolog/file1.txt',write,Sl),not(pr4(Sl)),close(Sl).
+pr4(Sl):-make_ar(5,Positions),length(Itog_slovo,5),sochet(A_positions,2,Positions),del_a_pos(Positions,A_positions,Pos),sochet([H],1,[a,b,c,d,e,f]),put_sim(Itog_slovo,A_positions,H),delete([a,b,c,d,e,f],H,M),put_free1(Itog_slovo,Pos,M,3),write(Sl,Itog_slovo),put(Sl,10),fail.
+
+put_sim(S,Pos,H):-put_sim(S,1,Pos,H).
+put_sim([],_,_,_):-!.
+put_sim([H|L],N,Pos,H):-in_list(Pos,N),N1 is N+1,put_sim(L,N1,Pos,H),!.
+put_sim([_|L],N,Pos,H):-N1 is N+1,put_sim(L,N1,Pos,H),!.
