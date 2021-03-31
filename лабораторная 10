@@ -93,7 +93,7 @@ j([0|L],N,S,Len):-N1 is N+1,j(L,N1,S,Len),!.
 write_matr([]):-!.
 write_matr([H|T]):-write(H),nl,write_matr(T),!.
 
-
+%3
 pr3:-get_V(V),nl,get_edges(V,E),euler_N(E).
 
 in_list_exlude1([El|T],El,T).
@@ -107,3 +107,22 @@ path(L,T):-path1(L1,T),L1==L.
 path1(1,[_]):-!.
 path1(K,[[_,X]|[[X,Y]|T]]):-path1(K1,[[X,Y]|T]),K is K1+1.
 path1(K,[[_,X]|[[Y,X]|T]]):-path1(K1,[[X,Y]|T]),K is K1+1.
+
+%4  
+pr4:-get_V(V),nl,get_edges(V,E),chislo_vn_ust(V,E).
+
+chislo_vn_ust(V,E):-length(V,L),pokr(L,V,E,L,M),write("число внешней устойчивости = "),write(M).
+
+pokr(_,[],_,M,M):-!.
+pokr(L,[H],E,M1,M):-p([H],E,0,L1),L2 is L-1,(L1==L2->pokr(L,[],E,1,M);pokr(L,[],E,M1,M)),!.
+pokr(L,[H|P],E,M1,M):-pokr(P,[H],E,L,1,M2),(nonvar(M2)->(M2<M1->pokr(L,P,E,M2,M);pokr(L,P,E,M1,M));pokr(L,P,E,M1,M)),!.
+
+pokr([H|P],V,E,L,M1,M):-p(V,E,0,L1),length(V,Lv),L2 is L-Lv,L1\=L2->M2 is M1+1,pokr(P,[H|V],E,L,M2,M),!.
+pokr(_,V,E,L,M1,M1):-p(V,E,0,L1),length(V,Lv),L2 is L-Lv,L1==L2,!.
+pokr([],_,_,_,_,_):-!.
+
+p(_,[],K,K):-!.
+p(V,[[X,Y]|T],L,K):-in_list(V,X),not(in_list(V,Y)),L1 is L+1,p(V,T,L1,K).
+p(V,[[X,Y]|T],L,K):-in_list(V,Y),not(in_list(V,X)),L1 is L+1,p(V,T,L1,K).
+p(V,[_|T],L,K):-p(V,T,L,K),!.
+
