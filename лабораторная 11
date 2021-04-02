@@ -1,0 +1,468 @@
+read_str(A,N):-get0(X),r_str(X,A,[],N,0).
+r_str(10,A,A,N,N):-!.
+r_str(X,A,B,N,K):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1).
+
+read_name(H):-get0(_),read_str(X,_),name(H,X).
+
+to_file(S,Term,X,Y):-write(S,Term),write(S,"("),write(S,X),write(S,","),write(S,Y),write(S,")").
+
+base_to_file([],_):-!.
+base_to_file([H|T],S):-write(S,H),nl(S),base_to_file(T,S),!.
+
+%в базу данных
+read_list_str(List):-open('C:/Users/Елизавета/Documents/Prolog/file.txt',read,S),read_str(A,_,Flag,S),read_list_str([A],List,Flag,S),close(S).
+read_list_str(List,List,1,_):-!.
+read_list_str(Cur_list,List,0,S):-read_str(A,_,Flag,S),append(Cur_list,[A],C_l),read_list_str(C_l,List,Flag,S).
+
+read_str(A,N,Flag,S):-get0(S,X),r_str(X,A,[],N,0,Flag,S).
+r_str(-1,A,A,N,N,1,_):-!.
+r_str(10,A,A,N,N,0,_):-!.
+r_str(X,A,B,N,K,Flag,S):-K1 is K+1,append(B,[X],B1),get0(S,X1),r_str(X1,A,B1,N,K1,Flag,S).
+
+to_base(Str):-read_list_str(L),to_base(L,Str).
+to_base([[]],[]):-!.
+to_base([],[]):-!.
+to_base([H|L],[Str|S]):-string_codes(Str,H),term_string(Term,Str),(\+Term,Term\=end_of_file->asserta(Term),to_base(L,S);to_base(L,S)),!.
+
+:- dynamic scandinavia/2.
+:- dynamic god/2.
+:- dynamic strength/2.
+:- dynamic power/2.
+:- dynamic gender/2.
+:- dynamic transform/2.
+:- dynamic ancient/2.
+:- dynamic patron/2.
+:- dynamic descendant/2.
+:- dynamic fearsome/2.
+:- dynamic marital_status/2.
+
+scandinavia(один,0).
+scandinavia(тор,0).
+scandinavia(локи,0).
+scandinavia(мимир,0).
+scandinavia(тюр,0).
+scandinavia(бальдр,0).
+scandinavia(фрейр,0).
+scandinavia(улль,0).
+scandinavia(фригг,0).
+scandinavia(фрейя,0).
+scandinavia(фенрир,0).
+scandinavia(йормунганд,0).
+scandinavia(слейпнир,0).
+scandinavia(хель,0).
+scandinavia(аудумла,0).
+scandinavia(имир,0).
+scandinavia(гея,1).
+scandinavia(уран,1).
+scandinavia(зевс,1).
+scandinavia(посейдон,1).
+scandinavia(аид,1).
+scandinavia(аполлон,1).
+scandinavia(гефест,1).
+scandinavia(арес,1).
+scandinavia(гера,1).
+scandinavia(деметра,1).
+scandinavia(персефона,1).
+scandinavia(афина,1).
+scandinavia(медуза,1).
+scandinavia(минотавр,1).
+
+god(один,0).
+god(тор,0).
+god(локи,0).
+god(мимир,2).
+god(тюр,0).
+god(бальдр,0).
+god(фрейр,0).
+god(улль,0).
+god(фригг,0).
+god(фрейя,0).
+god(фенрир,1).
+god(йормунганд,1).
+god(слейпнир,1).
+god(хель,1).
+god(аудумла,1).
+god(имир,2).
+god(гея,2).
+god(уран,2).
+god(зевс,0).
+god(посейдон,0).
+god(аид,0).
+god(аполлон,0).
+god(гефест,0).
+god(арес,0).
+god(гера,0).
+god(деметра,0).
+god(персефона,0).
+god(афина,0).
+god(медуза,1).
+god(минотавр,1).
+
+strength(один,0).
+strength(тор,0).
+strength(локи,0).
+strength(мимир,1).
+strength(тюр,0).
+strength(бальдр,0).
+strength(фрейр,0).
+strength(улль,0).
+strength(фригг,0).
+strength(фрейя,1).
+strength(фенрир,0).
+strength(йормунганд,0).
+strength(слейпнир,1).
+strength(хель,0).
+strength(аудумла,1).
+strength(имир,0).
+strength(гея,0).
+strength(уран,0).
+strength(зевс,0).
+strength(посейдон,0).
+strength(аид,0).
+strength(аполлон,0).
+strength(гефест,0).
+strength(арес,0).
+strength(гера,0).
+strength(деметра,0).
+strength(персефона,1).
+strength(афина,0).
+strength(медуза,1).
+strength(минотавр,1).
+
+power(один,0).
+power(тор,1).
+power(локи,2).
+power(мимир,0).
+power(тюр,0).
+power(бальдр,1).
+power(фрейр,1).
+power(улль,1).
+power(фригг,0).
+power(фрейя,0).
+power(фенрир,2).
+power(йормунганд,2).
+power(слейпнир,2).
+power(хель,0).
+power(аудумла,2).
+power(имир,2).
+power(гея,1).
+power(уран,1).
+power(зевс,1).
+power(посейдон,1).
+power(аид,0).
+power(аполлон,1).
+power(гефест,0).
+power(арес,0).
+power(гера,0).
+power(деметра,1).
+power(персефона,1).
+power(афина,0).
+power(медуза,0).
+power(минотавр,2).
+
+gender(один,0).
+gender(тор,0).
+gender(локи,0).
+gender(мимир,0).
+gender(тюр,0).
+gender(бальдр,0).
+gender(фрейр,0).
+gender(улль,0).
+gender(фригг,1).
+gender(фрейя,1).
+gender(фенрир,0).
+gender(йормунганд,0).
+gender(слейпнир,0).
+gender(хель,1).
+gender(аудумла,1).
+gender(имир,0).
+gender(гея,1).
+gender(уран,0).
+gender(зевс,0).
+gender(посейдон,0).
+gender(аид,0).
+gender(аполлон,0).
+gender(гефест,0).
+gender(арес,0).
+gender(гера,1).
+gender(деметра,1).
+gender(персефона,1).
+gender(афина,1).
+gender(медуза,1).
+gender(минотавр,0).
+
+transform(один,1).
+transform(тор,1).
+transform(локи,0).
+transform(мимир,1).
+transform(тюр,1).
+transform(бальдр,1).
+transform(фрейр,1).
+transform(улль,1).
+transform(фригг,1).
+transform(фрейя,1).
+transform(фенрир,1).
+transform(йормунганд,1).
+transform(слейпнир,1).
+transform(хель,1).
+transform(аудумла,1).
+transform(имир,1).
+transform(гея,1).
+transform(уран,1).
+transform(зевс,0).
+transform(посейдон,1).
+transform(аид,1).
+transform(аполлон,1).
+transform(гефест,1).
+transform(арес,1).
+transform(гера,1).
+transform(деметра,1).
+transform(персефона,1).
+transform(афина,1).
+transform(медуза,1).
+transform(минотавр,1).
+
+ancient(один,1).
+ancient(тор,1).
+ancient(локи,1).
+ancient(мимир,1).
+ancient(тюр,1).
+ancient(бальдр,1).
+ancient(фрейр,1).
+ancient(улль,1).
+ancient(фригг,1).
+ancient(фрейя,1).
+ancient(фенрир,1).
+ancient(йормунганд,1).
+ancient(слейпнир,1).
+ancient(хель,1).
+ancient(аудумла,0).
+ancient(имир,0).
+ancient(гея,0).
+ancient(уран,0).
+ancient(зевс,1).
+ancient(посейдон,1).
+ancient(аид,1).
+ancient(аполлон,1).
+ancient(гефест,1).
+ancient(арес,1).
+ancient(гера,1).
+ancient(деметра,1).
+ancient(персефона,1).
+ancient(афина,1).
+ancient(медуза,1).
+ancient(минотавр,1).
+
+patron(один,0).
+patron(тор,0).
+patron(локи,0).
+patron(мимир,1).
+patron(тюр,0).
+patron(бальдр,0).
+patron(фрейр,1).
+patron(улль,1).
+patron(фригг,1).
+patron(фрейя,1).
+patron(фенрир,1).
+patron(йормунганд,1).
+patron(слейпнир,1).
+patron(хель,1).
+patron(аудумла,1).
+patron(имир,1).
+patron(гея,1).
+patron(уран,1).
+patron(зевс,0).
+patron(посейдон,0).
+patron(аид,1).
+patron(аполлон,0).
+patron(гефест,0).
+patron(арес,0).
+patron(гера,0).
+patron(деметра,0).
+patron(персефона,1).
+patron(афина,0).
+patron(медуза,1).
+patron(минотавр,1).
+
+descendant(один,0).
+descendant(тор,1).
+descendant(локи,0).
+descendant(мимир,1).
+descendant(тюр,1).
+descendant(бальдр,1).
+descendant(фрейр,1).
+descendant(улль,1).
+descendant(фригг,0).
+descendant(фрейя,1).
+descendant(фенрир,1).
+descendant(йормунганд,1).
+descendant(слейпнир,1).
+descendant(хель,1).
+descendant(аудумла,1).
+descendant(имир,1).
+descendant(гея,1).
+descendant(уран,0).
+descendant(зевс,0).
+descendant(посейдон,0).
+descendant(аид,0).
+descendant(аполлон,1).
+descendant(гефест,1).
+descendant(арес,1).
+descendant(гера,0).
+descendant(деметра,0).
+descendant(персефона,1).
+descendant(афина,1).
+descendant(медуза,1).
+descendant(минотавр,1).
+
+fearsome(один,0).
+fearsome(тор,0).
+fearsome(локи,0).
+fearsome(мимир,1).
+fearsome(тюр,0).
+fearsome(бальдр,1).
+fearsome(фрейр,1).
+fearsome(улль,0).
+fearsome(фригг,1).
+fearsome(фрейя,1).
+fearsome(фенрир,0).
+fearsome(йормунганд,1).
+fearsome(слейпнир,1).
+fearsome(хель,0).
+fearsome(аудумла,1).
+fearsome(имир,1).
+fearsome(гея,1).
+fearsome(уран,0).
+fearsome(зевс,0).
+fearsome(посейдон,0).
+fearsome(аид,0).
+fearsome(аполлон,1).
+fearsome(гефест,1).
+fearsome(арес,0).
+fearsome(гера,0).
+fearsome(деметра,1).
+fearsome(персефона,1).
+fearsome(афина,0).
+fearsome(медуза,0).
+fearsome(минотавр,0).
+
+marital_status(один,0).
+marital_status(тор,0).
+marital_status(локи,0).
+marital_status(мимир,0).
+marital_status(тюр,0).
+marital_status(бальдр,0).
+marital_status(фрейр,0).
+marital_status(улль,0).
+marital_status(фригг,0).
+marital_status(фрейя,0).
+marital_status(фенрир,1).
+marital_status(йормунганд,1).
+marital_status(слейпнир,1).
+marital_status(хель,1).
+marital_status(аудумла,1).
+marital_status(имир,1).
+marital_status(гея,1).
+marital_status(уран,1).
+marital_status(зевс,0).
+marital_status(посейдон,0).
+marital_status(аид,0).
+marital_status(аполлон,1).
+marital_status(гефест,0).
+marital_status(арес,1).
+marital_status(гера,0).
+marital_status(деметра,0).
+marital_status(персефона,0).
+marital_status(афина,1).
+marital_status(медуза,1).
+marital_status(минотавр,1).
+
+question1(X1):-write("Персонаж относится к скандинавской мифологии?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X1).
+
+question2(X2):-	write("Кем является персонаж?"),nl,
+				write("0. Бог"),nl,
+				write("1. Мифическое существо"),nl,
+                                write("2. Другое"),nl,
+				read(X2).
+
+question3(X3):-	write("Является ли он одним из сильнейших?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X3).
+
+question4(X4):-	write("Какие у него силы?"),nl,
+				write("0. Влияние на людей"),nl,
+				write("1. Влияние на природу"),nl,
+				write("2. Другое"),nl,
+				read(X4).
+
+question5(X5):-	write("Его пол?"),nl,
+				write("0. Мужской"),nl,
+				write("1. Женский"),nl,
+				read(X5).
+
+question6(X6):-	write("Может ли он изменять внешность?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X6).
+question7(X7):-	write("Относится ли к древним?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X7).
+question8(X8):-	write("Является ли персонаж покровителем?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X8).
+question9(X9):-	write("Является ли персонаж ближайшим потомком древних?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X9).
+question10(X10):- write("Является ли персонаж опасным?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X10).
+question11(X11):- write("Замужем/женат?"),nl,
+				write("0. Да"),nl,
+				write("1. Нет"),nl,
+				read(X11).
+
+
+pr:-to_base(Str),write(Str),nl,open('C:/Users/Елизавета/Documents/Prolog/file.txt',write,Sl),base_to_file(Str,Sl),question1(X1),question2(X2),question3(X3),((X1=0,X2=2),scandinavia(X,X1),god(X,X2),strength(X,X3),nl,write(X);sokr3(X1,X2,X3,Sl)),close(Sl),to_base(_),!.
+pr:-write("Неизвестный персонаж"),!,fail.
+
+
+sokr3(0,0,1,Sl):-question4(X4),question11(X11),(scandinavia(X,0),god(X,0),strength(X,1),power(X,X4),marital_status(X,X11),nl,write(X);write("Введите имя персонажа:  "),nl,read_name(X),to_file(Sl,"scandinavia",X,0),nl(Sl),to_file(Sl,"god",X,0),nl(Sl),to_file(Sl,"strength",X,1),nl(Sl),to_file(Sl,"power",X,X4),nl(Sl),to_file(Sl,"marital_status",X,X11)),!.
+
+
+sokr3(0,0,0,Sl):-question4(X4),(X4=2->question6(X6),(scandinavia(X,0),god(X,0),strength(X,0),power(X,X4),transform(X,X6),nl,write(X);write("Введите имя персонажа:  "),read_name(X),to_file(Sl,"scandinavia",X,0),nl(Sl),to_file(Sl,"god",X,0),nl(Sl),to_file(Sl,"strength",X,0),nl(Sl),to_file(Sl,"power",X,X4),nl(Sl),to_file(Sl,"transform",X,X6));sokr41(X4,Sl)),!.
+
+sokr3(1,0,0,Sl):-question4(X4),question5(X5),question6(X6),((X4=1,X5=0,X6=0;X4=0,X5=1,X6=1)->scandinavia(X,1),god(X,0),strength(X,0),power(X,X4),gender(X,X5),transform(X,X6),nl,write(X);sokr6(X4,X5,X6,Sl)),!.
+
+sokr3(0,1,0,Sl):-question4(X4),(X4=0,scandinavia(X,0),god(X,1),strength(X,0),power(X,X4),nl,write(X);sokr42(X4,Sl)),!.
+
+sokr3(0,1,1,Sl):-question4(X4),question5(X5),question10(X10),(scandinavia(X,0),god(X,1),strength(X,1),power(X,X4),gender(X,X5),fearsome(X,X10),nl,write(X);write("Введите имя персонажа:  "),read_name(X),to_file(Sl,"scandinavia",X,0),nl(Sl),to_file(Sl,"god",X,1),nl(Sl),to_file(Sl,"strength",X,1),nl(Sl),to_file(Sl,"power",X,X4),nl(Sl),to_file(Sl,"gender",X,X5),nl(Sl),to_file(Sl,"fearsome",X,X10)),!.
+
+sokr3(1,0,1,Sl):-question4(X4),(scandinavia(X,1),god(X,0),strength(X,1),power(X,X4),nl,write(X);write("Введите имя персонажа:  "),read_name(X),to_file(Sl,"scandinavia",X,1),nl(Sl),to_file(Sl,"god",X,0),nl(Sl),to_file(Sl,"strength",X,1),nl(Sl),to_file(Sl,"power",X,X4)),!.
+
+sokr3(1,2,0,_):-question4(X4),question5(X5),scandinavia(X,1),god(X,2),strength(X,0),power(X,X4),gender(X,X5),nl,write(X),!.
+
+sokr3(1,1,1,_):-question4(X4),scandinavia(X,1),god(X,1),strength(X,1),power(X,X4),nl,write(X),!.
+
+sokr41(0,Sl):-question5(X5),(X5=1,scandinavia(X,0),god(X,0),strength(X,0),power(X,0),gender(X,X5),nl,write(X);sokr5(X5,Sl)),!.
+
+sokr41(1,_):-question5(X5),question6(X6),question7(X7),question8(X8),question9(X9),question10(X10),scandinavia(X,0),god(X,0),strength(X,0),power(X,1),gender(X,X5),transform(X,X6),ancient(X,X7),patron(X,X8),descendant(X,X9),fearsome(X,X10),nl,write(X),!.
+
+sokr42(2,_):-question5(X5),question6(X6),question7(X7),question8(X8),question9(X9),question10(X10),scandinavia(X,0),god(X,1),strength(X,0),power(X,2),gender(X,X5),transform(X,X6),ancient(X,X7),patron(X,X8),descendant(X,X9),fearsome(X,X10),nl,write(X),!.
+
+sokr5(0,_):-question6(X6),question7(X7),question8(X8),question9(X9),scandinavia(X,0),god(X,0),strength(X,0),power(X,0),gender(X,0),transform(X,X6),ancient(X,X7),patron(X,X8),descendant(X,X9),nl,write(X),!.
+
+sokr6(0,0,1,Sl):-question7(X7),question8(X8),question9(X9),question10(X10),(scandinavia(X,1),god(X,0),strength(X,0),power(X,0),gender(X,0),transform(X,1),ancient(X,X7),patron(X,X8),descendant(X,X9),fearsome(X,X10),nl,write(X);write("Введите имя персонажа:  "),read_name(Xn),to_file(Sl,"scandinavia",Xn,1),nl(Sl),to_file(Sl,"god",Xn,0),nl(Sl),to_file(Sl,"strength",Xn,0),nl(Sl),to_file(Sl,"power",Xn,0),nl(Sl),to_file(Sl,"gender",Xn,0),nl(Sl),to_file(Sl,"transform",Xn,1),nl(Sl),to_file(Sl,"ancient",Xn,X7),nl(Sl),to_file(Sl,"patron",Xn,X8),nl(Sl),to_file(Sl,"descendant",Xn,X9),nl(Sl),to_file(Sl,"fearsome",Xn,X10),nl(Sl)),!.
+
+sokr6(1,0,1,_):-question7(X7),question8(X8),question9(X9),scandinavia(X,1),god(X,0),strength(X,0),power(X,1),gender(X,0),transform(X,1),ancient(X,X7),patron(X,X8),descendant(X,X9),nl,write(X),!.
+
+sokr6(0,1,1,Sl):-question7(X7),question8(X8),question9(X9),question10(X10),(scandinavia(X,1),god(X,0),strength(X,0),power(X,0),gender(X,1),transform(X,1),ancient(X,X7),patron(X,X8),descendant(X,X9),fearsome(X,X10),nl,write(X);write("Введите имя персонажа:  "),read_name(Xn),to_file(Sl,"scandinavia",Xn,1),nl(Sl),to_file(Sl,"god",Xn,0),nl(Sl),to_file(Sl,"strength",Xn,0),nl(Sl),to_file(Sl,"power",Xn,0),nl(Sl),to_file(Sl,"gender",Xn,1),nl(Sl),to_file(Sl,"transform",Xn,1),nl(Sl),to_file(Sl,"ancient",Xn,X7),nl(Sl),to_file(Sl,"patron",Xn,X8),nl(Sl),to_file(Sl,"descendant",Xn,X9),nl(Sl),to_file(Sl,"fearsome",Xn,X10),nl(Sl)),!.
+
+sokr6(1,1,1,Sl):-question9(X9),(scandinavia(X,1),god(X,0),strength(X,0),power(X,1),gender(X,1),transform(X,1),descendant(X,X9),nl,write(X);write("Введите имя персонажа:  "),read_name(Xn),to_file(Sl,"scandinavia",Xn,1),nl(Sl),to_file(Sl,"god",Xn,0),nl(Sl),to_file(Sl,"strength",Xn,0),nl(Sl),to_file(Sl,"power",Xn,1),nl(Sl),to_file(Sl,"gender",Xn,1),nl(Sl),to_file(Sl,"transform",Xn,1),nl(Sl),to_file(Sl,"descendant",Xn,X9)),!.
